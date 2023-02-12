@@ -32439,7 +32439,7 @@ function filterData(searchText, restaurants) {
     const filterData = restaurants.filter((restaurant)=>restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase()));
     return filterData;
 }
-const FETCH_MENU_URL = "https://www.swiggy.com/dapi/menu/v4/full?lat=12.9351929&lng=77.62448069999999&menuId=";
+const FETCH_MENU_URL = "https://www.swiggy.com/dapi/menu/v4/full?lat=28.5270362&lng=77.13593279999999&menuId=";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c7s09":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$5bd8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");

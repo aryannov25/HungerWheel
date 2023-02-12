@@ -9,5 +9,5 @@ export const IMG_CDN_URL =
     return filterData;
   }
   export const FETCH_MENU_URL =
-  "https://www.swiggy.com/dapi/menu/v4/full?lat=12.9351929&lng=77.62448069999999&menuId=";
+  "https://www.swiggy.com/dapi/menu/v4/full?lat=28.5270362&lng=77.13593279999999&menuId=";
   
