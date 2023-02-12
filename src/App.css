@@ -1,0 +1,57 @@
+
+.search-btn{
+    border: 1px solid black;
+}
+
+
+.shimmer-card{
+  height: 250px;
+}
+
+.restaurant-list {
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+  }
+  
+  .card {
+    width: 240px;
+    height: max-content;
+    border-radius: 5px;
+    box-shadow: -1px 5px 10px 5px rgba(42, 42, 42, 0.2);
+    padding: 10px;
+    margin-top: 40px;
+    margin: 20px;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    transform: scale(1.03);
+  }
+  
+  .card > img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .card > h5 {
+    font-weight: lighter;
+  }
+  
+  .card > span {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    text-align: center;
+  }
+  
+  .card > span > h4 {
+    font-weight: bolder;
+    font-size: 12px;
+    padding: 0 2px 0;
+    margin-top: 10px;
+  }
+  
