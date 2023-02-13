@@ -32659,6 +32659,6 @@ exports.default = useRestaurant;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","./Constants":"hYtIY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","awEvQ","bB7Pu"], "bB7Pu", "parcelRequiree3f3")
+},{"react":"21dqq","./Constants":"hYtIY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","awEvQ","bB7Pu"], "bB7Pu", "parcelRequire2fa7")
 
 //# sourceMappingURL=index.3d214d75.js.map
