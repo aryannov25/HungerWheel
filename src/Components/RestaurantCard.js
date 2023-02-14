@@ -11,13 +11,7 @@ const RestaurantCard = ({
   avgRating,
 }) => {
   return (
-    // <div className="w-60 p-2 mt-2 m-2 shadow-lg h-full bg-purple-50">
-    // <img src={IMG_CDN_URL + cloudinaryImageId} />
-    // <h2 className="font-bold text-xl">{name}</h2>
-    // <h3>{cuisines.join(", ")}</h3>
-    // <h4>{lastMileTravelString}</h4>
-    //  </div>
-
+    
     <div className="card w-60 p-2 mt-2 m-4 shadow-lg h-full bg-purple-50">
       <img src={IMG_CDN_URL + cloudinaryImageId} />
       <h3 className="font-bold text-lg">{name}</h3>
@@ -29,6 +23,10 @@ const RestaurantCard = ({
         <h4>• {costForTwoString}</h4>
       </span>
     </div>
+
+
+
+
   );
 };
 export default RestaurantCard;

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import { filterData } from "./Constants";
 import Shimmer from "./Shimmer";
+import Nav from "./Navbar"
+
 
 function Restaurant() {
   const [resData, setresData] = useState([]);
@@ -29,6 +31,7 @@ function Restaurant() {
     <Shimmer />
   ) : (
     <>
+    <Nav/>
       <div className="search-container p-3 bg-purple-50 ">
         <input
           data-testid="search-input"
@@ -65,6 +68,9 @@ function Restaurant() {
           );
         })}
       </div>
+      <h4 className="p-10 m-10 text-center">
+      This site is developed by Aryan.
+    </h4>
     </>
   );
 }
