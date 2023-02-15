@@ -4,6 +4,7 @@ import RestaurantCard from "./RestaurantCard";
 import { filterData } from "./Constants";
 import Shimmer from "./Shimmer";
 import Nav from "./Navbar";
+import Footer from "./Footer";
 
 function Restaurant() {
   const [resData, setresData] = useState([]);
@@ -31,11 +32,11 @@ function Restaurant() {
   ) : (
     <>
       <Nav />
-      <div className="search-container p-3 bg-purple-50 ">
+      <div className="search-container p-3 bg-orange-50 ">
         <input
           data-testid="search-input"
           type="text"
-          className="focus:bg-green-200 p-2 m-2"
+          className="focus:bg-blue-200 p-2 m-2"
           placeholder="Search"
           value={searchText}
           onChange={(e) => {
@@ -44,7 +45,7 @@ function Restaurant() {
         />
         <button
           data-testid="search-btn"
-          className="p-2 m-2 bg-purple-900 hover:bg-gray-500 text-white rounded-md"
+          className="p-2 m-2 bg-orange-500 hover:bg-gray-500 text-white rounded-md"
           onClick={() => {
             //need to filter the data
             const data = filterData(searchText, allRestaurants);
@@ -67,17 +68,7 @@ function Restaurant() {
           );
         })}
       </div>
-      <h4 className="p-10 m-10 text-center">
-        This site is developed by{" "}
-        <a
-          className=" text-orange-400"
-          href="https://www.linkedin.com/in/aryan-chaudhary-133855230/"
-          target="_blank"
-        >
-          Aryan Chaudhary
-        </a>
-        .
-      </h4>
+      <Footer /> 
     </>
   );
 }
