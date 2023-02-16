@@ -1,62 +1,59 @@
-
-.search-btn{
-    border: 1px solid black;
+.search-btn {
+  border: 1px solid black;
 }
 
-
-.shimmer-card{
+.shimmer-card {
   height: 250px;
 }
 
 .restaurant-list {
-    width: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    align-self: stretch;
-  }
-  
-  .card {
-    width: 240px;
-    height: max-content;
-    border-radius: 5px;
-    box-shadow: -1px 5px 10px 5px rgba(42, 42, 42, 0.2);
-    padding: 10px;
-    margin-top: 40px;
-    margin: 20px;
-    cursor: pointer;
-  }
-  
-  .card:hover {
-    transform: scale(1.03);
-  }
-  
-  .card > img {
-    width: 100%;
-    border-radius: 10px;
-  }
-  
-  .card > h5 {
-    font-weight: lighter;
-  }
-  
-  .card > span {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    text-align: center;
-  }
-  
-  .card > span > h4 {
-    font-weight: bolder;
-    font-size: 12px;
-    padding: 0 2px 0;
-    margin-top: 10px;
-  }
-  
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+}
 
-  /* Restaurant Menu CSS Start */
+.card {
+  width: 240px;
+  height: max-content;
+  border-radius: 5px;
+  box-shadow: -1px 5px 10px 5px rgba(42, 42, 42, 0.2);
+  padding: 10px;
+  margin-top: 40px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card > img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.card > h5 {
+  font-weight: lighter;
+}
+
+.card > span {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.card > span > h4 {
+  font-weight: bolder;
+  font-size: 12px;
+  padding: 0 2px 0;
+  margin-top: 10px;
+}
+
+/* Restaurant Menu CSS Start */
 .restaurant-menu {
   margin-top: 80px;
   min-height: 80vh;
@@ -188,7 +185,6 @@
   border-radius: 5px;
 }
 .add-btn {
-  
   padding: 8px 25px;
   cursor: pointer;
   outline: none;
