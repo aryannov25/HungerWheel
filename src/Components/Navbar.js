@@ -20,9 +20,7 @@ function Navbar() {
         </div>
         <div className="mt-6 mr-4 items-center">
           <ul className="flex space-x-4 p-2">
-            <a href="/">
-              <li>Login</li>
-            </a>
+            
           </ul>
         </div>
       </div>
