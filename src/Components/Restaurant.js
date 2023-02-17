@@ -32,11 +32,11 @@ function Restaurant() {
   ) : (
     <>
       <Nav />
-      <div className="search-container p-3 bg-orange-50 ">
+      <div className="search-container p-3 text-center w-full bg-orange-50 ">
         <input
           data-testid="search-input"
           type="text"
-          className="focus:bg-blue-200 p-2 m-2"
+          className="focus:bg-blue-200 p-2 w-1/5 m-2"
           placeholder="Search"
           value={searchText}
           onChange={(e) => {
