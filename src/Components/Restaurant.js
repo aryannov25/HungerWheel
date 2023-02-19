@@ -68,7 +68,7 @@ function Restaurant() {
           );
         })}
       </div>
-      <Footer /> 
+      <Footer />
     </>
   );
 }
