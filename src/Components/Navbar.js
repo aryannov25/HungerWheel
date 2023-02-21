@@ -19,9 +19,7 @@ function Navbar() {
           </ul>
         </div>
         <div className="mt-6 mr-4 items-center">
-          <ul className="flex space-x-4 p-2">
-            
-          </ul>
+          <ul className="flex space-x-4 p-2"></ul>
         </div>
       </div>
     </div>
