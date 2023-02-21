@@ -112,7 +112,7 @@ const RestaurantMenu = () => {
           </div>
         </div>
       </div>
-    <Footer />
+      <Footer />
     </>
   );
 };
