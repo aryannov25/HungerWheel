@@ -5,7 +5,7 @@ function About() {
   return (
     <>
       <Nav />
-      <div>About Page</div>
+      <h1 className="text-center">About Page</h1>
     </>
   );
 }
