@@ -1,4 +1,6 @@
 import Logo from "../assets/img/HungerWheel.png";
+import { Link } from "react-router-dom";
+
 
 function Navbar() {
   return (
@@ -10,9 +12,9 @@ function Navbar() {
             <a href="/">
               <li>Home</li>
             </a>
-            <a href="/about">
+            <Link to="/about">
               <li>About</li>
-            </a>
+            </Link>
             <a href="/store">
               <li>Store</li>
             </a>
