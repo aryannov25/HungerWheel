@@ -15,9 +15,9 @@ function Navbar() {
             <Link to="/about">
               <li>About</li>
             </Link>
-            <a href="/store">
+            <Link to="/store">
               <li>Store</li>
-            </a>
+            </Link>
           </ul>
         </div>
         <div className="mt-6 mr-4 items-center">
