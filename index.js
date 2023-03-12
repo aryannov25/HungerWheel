@@ -3,6 +3,10 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./src/App";
 import RestaurantMenu from "./src/Components/RestaurantMenu";
+import Store from "./src/Components/Store";
+import About from "./src/Components/About";
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -10,6 +14,8 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/store" element={<Store/>} />
     </Routes>
   </BrowserRouter>
 );
