@@ -5,7 +5,7 @@ function Store() {
   return (
     <>
       <Nav />
-      <div>Store Page</div>
+      <h1 className="text-center">Store Page</h1>
     </>
   );
 }
