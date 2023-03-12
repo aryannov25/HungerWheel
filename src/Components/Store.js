@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Nav from "./Navbar";
 
 function Store() {
   return (
-    <div>Store Page</div>
-  )
+    <>
+      <Nav />
+      <div>Store Page</div>
+    </>
+  );
 }
 
-export default Store
+export default Store;
