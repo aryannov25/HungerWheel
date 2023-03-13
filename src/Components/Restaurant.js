@@ -37,7 +37,7 @@ function Restaurant() {
           data-testid="search-input"
           type="text"
           className="focus:bg-blue-200 p-2 w-1/5 m-2"
-          placeholder="Search"
+          placeholder="Search Restaurants"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
