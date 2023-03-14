@@ -1,7 +1,6 @@
 import Logo from "../assets/img/HungerWheel.png";
 import { Link } from "react-router-dom";
 
-
 function Navbar() {
   return (
     <div>
