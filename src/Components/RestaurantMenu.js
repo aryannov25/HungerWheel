@@ -7,6 +7,7 @@ import Nav from "./Navbar";
 import Footer from "./Footer";
 
 const RestaurantMenu = () => {
+  
   const { resId } = useParams();
 
   const restaurant = useRestaurant(resId);
