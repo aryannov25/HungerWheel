@@ -1,13 +1,5 @@
-import React from "react";
-import Nav from "./Navbar";
+import { configureStore } from "@reduxjs/toolkit";
 
-function Store() {
-  return (
-    <>
-      <Nav />
-      <h1 className="text-center">Store Page</h1>
-    </>
-  );
-}
+const store = configureStore({});
 
-export default Store;
+export default store;
