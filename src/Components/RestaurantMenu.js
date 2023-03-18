@@ -47,8 +47,8 @@ const RestaurantMenu = () => {
           />
           <div className="restaurant-summary-details">
             <h2 className="restaurant-title">{restaurant?.name}</h2>
-            <p className="restaurant-tags">{restaurant?.cuisines.join(", ")}</p>
-            <div className="restaurant-details">
+            {/* <p className="restaurant-tags">{restaurant?.cuisines.join(", ")}</p> */}
+            {/* <div className="restaurant-details">
               <div
                 className="restaurant-rating"
                 style={
@@ -63,10 +63,10 @@ const RestaurantMenu = () => {
                 <span>{restaurant?.avgRating}</span>
               </div>
               <div>|</div>
-              <div>{restaurant?.sla.slaString}</div>
+              <div>{restaurant?.sla?.slaString}</div>
               <div>|</div>
-              <div>{restaurant?.costForTwoMsg}</div>
-            </div>
+              <div>{restaurant?.costForTwoMessage}</div>
+            </div> */}
           </div>
         </div>
 
@@ -74,11 +74,11 @@ const RestaurantMenu = () => {
           <div className="menu-items-container">
             <div className="menu-title-wrap">
               <h3 className="menu-title">Recommended</h3>
-              <p className="menu-count">
+              {/* <p className="menu-count">
                 {Object.keys(restaurant?.menu?.items).length} ITEMS
-              </p>
+              </p> */}
             </div>
-            <div className="menu-items-list">
+            {/* <div className="menu-items-list">
               {Object.values(restaurant?.menu?.items).map((item) => (
                 <div className="menu-item" key={item?.id}>
                   <div className="menu-item-details">
@@ -108,7 +108,7 @@ const RestaurantMenu = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
