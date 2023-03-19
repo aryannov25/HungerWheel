@@ -67,12 +67,13 @@
   width: 250px;
   height: 170px;
   border-radius: 5px;
+  object-fit: cover;
 }
 .restaurant-summary-details {
   display: flex;
   flex-direction: column;
   flex-basis: 520px;
-  margin: 20px;
+  margin: 10px;
 }
 .restaurant-title {
   font-size: 40px;
@@ -98,14 +99,6 @@
   font-weight: 600;
   font-size: 16px;
   max-width: 340px;
-}
-.restaurant-rating {
-  display: flex;
-  align-items: center;
-  padding: 5px 8px;
-  gap: 5px;
-  background-color: var(--dark-green);
-  border-radius: 5px;
 }
 
 .restaurant-menu-content {

@@ -10,6 +10,7 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const restaurant = useRestaurant(resId);
+  console.log(restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", "));
 
   return !restaurant ? (
     <Shimmer />
@@ -21,35 +22,40 @@ const RestaurantMenu = () => {
         <div className="restaurant-summary">
           <img
             className="restaurant-img"
-            src={IMG_CDN_URL + restaurant?.cloudinaryImageId}
-            alt={restaurant?.name}
+            src={
+              IMG_CDN_URL +
+              restaurant?.cards[0]?.card?.card?.info?.cloudinaryImageId
+            }
+            alt={restaurant?.cards[0]?.card?.card?.info?.name}
           />
           <div className="restaurant-summary-details">
-            <h2 className="restaurant-title">{restaurant?.name}</h2>
-            <p className="restaurant-tags">{restaurant?.cuisines.join(", ")}</p>
+            <h2 className="restaurant-title">
+              {restaurant?.cards[0]?.card?.card?.info?.name},{" "}
+              {restaurant?.cards[0]?.card?.card?.info?.areaName}
+            </h2>
+            <p className="restaurant-tags">
+              {restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", ")}
+            </p>
             <div className="restaurant-details">
-              <div
-                className="restaurant-rating"
-                style={
-                  restaurant?.avgRating < 4
-                    ? { backgroundColor: "var(--light-red)" }
-                    : restaurant?.avgRating === "--"
-                    ? { backgroundColor: "white", color: "black" }
-                    : { color: "white" }
-                }
-              >
-                <i className="fa-solid fa-star"></i>
-                <span>{restaurant?.avgRating}</span>
+              <div>
+                <span>
+                  &#9733;{" "}
+                  {restaurant?.cards[0]?.card?.card?.info?.avgRatingString}
+                </span>
               </div>
               <div>|</div>
-              <div>{restaurant?.sla?.slaString}</div>
+              <div>
+                {restaurant?.cards[0]?.card?.card?.info?.sla?.slaString}
+              </div>
               <div>|</div>
-              <div>{restaurant?.costForTwoMessage}</div>
+              <div>
+                {restaurant?.cards[0]?.card?.card?.info?.costForTwoMessage}
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="restaurant-menu-content">
+        {/* <div className="restaurant-menu-content">
           <div className="menu-items-container">
             <div className="menu-title-wrap">
               <h3 className="menu-title">Recommended</h3>
@@ -89,7 +95,7 @@ const RestaurantMenu = () => {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <Footer />
     </>
