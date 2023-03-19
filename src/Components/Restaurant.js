@@ -19,7 +19,6 @@ function Restaurant() {
   async function getRestaurants() {
     const data = await fetch(
       "https://instafood.onrender.com/api/restaurants?lat=28.5270362&lng=77.13593279999999"
-      
     );
     const json = await data.json();
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
