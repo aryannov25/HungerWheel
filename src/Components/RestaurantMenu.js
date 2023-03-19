@@ -14,7 +14,6 @@ const RestaurantMenu = () => {
   return !restaurant ? (
     <Shimmer />
   ) : (
-   
     <>
       <Nav />
 
