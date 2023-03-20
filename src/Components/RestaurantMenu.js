@@ -10,7 +10,9 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
 
   const restaurant = useRestaurant(resId);
-  console.log(restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", "));
+
+  const menuData = (restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[6]?.card?.card?.categories[4]?.itemCards)
+  console.log((menuData));
 
   return !restaurant ? (
     <Shimmer />
@@ -55,35 +57,35 @@ const RestaurantMenu = () => {
           </div>
         </div>
 
-        {/* <div className="restaurant-menu-content">
+        <div className="restaurant-menu-content">
           <div className="menu-items-container">
             <div className="menu-title-wrap">
               <h3 className="menu-title">Recommended</h3>
               <p className="menu-count">
-                {Object.keys(restaurant?.menu?.items).length} ITEMS
+                {Object.keys(menuData).length} ITEMS
               </p>
             </div>
             <div className="menu-items-list">
-              {Object.values(restaurant?.menu?.items).map((item) => (
-                <div className="menu-item" key={item?.id}>
+              {Object.values(menuData).map((categories) => (
+                <div className="menu-item">
                   <div className="menu-item-details">
-                    <h3 className="item-title">{item?.name}</h3>
+                    <h3 className="item-title">{menuData?.[0]?.card?.info?.name}</h3>
                     <p className="item-cost">
-                      {item?.price > 0
+                      {categories?.itemCards?.card?.info?.defaultPrice > 0
                         ? new Intl.NumberFormat("en-IN", {
                             style: "currency",
                             currency: "INR",
-                          }).format(item?.price / 100)
+                          }).format(menuData?.[0]?.card?.info?.defaultPrice / 100)
                         : " "}
                     </p>
-                    <p className="item-desc">{item?.description}</p>
+                    <p className="item-desc">{menuData?.[0]?.card?.info?.description}</p>
                   </div>
                   <div className="menu-img-wrapper">
-                    {item?.cloudinaryImageId && (
+                    {categories?.itemCards?.card?.info?.imageId && (
                       <img
                         className="menu-item-img"
-                        src={IMG_CDN_URL + item?.cloudinaryImageId}
-                        alt={item?.name}
+                        src={IMG_CDN_URL + menuData?.[0]?.card?.info?.imageId}
+                        alt={menuData?.[0]?.card?.info?.description}
                       />
                     )}
                     <button className="btn bg-orange-400 add-btn">
@@ -95,7 +97,7 @@ const RestaurantMenu = () => {
               ))}
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
       <Footer />
     </>
