@@ -11,8 +11,10 @@ const RestaurantMenu = () => {
 
   const restaurant = useRestaurant(resId);
 
-  const menuData = (restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[6]?.card?.card?.categories[4]?.itemCards)
-  console.log((menuData));
+  const menuData =
+    restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[6]?.card
+      ?.card?.categories[4]?.itemCards;
+  console.log(menuData?.[0]?.card?.info?.defaultPrice / 100);
 
   return !restaurant ? (
     <Shimmer />
@@ -61,24 +63,28 @@ const RestaurantMenu = () => {
           <div className="menu-items-container">
             <div className="menu-title-wrap">
               <h3 className="menu-title">Recommended</h3>
-              <p className="menu-count">
-                {Object.keys(menuData).length} ITEMS
-              </p>
+              <p className="menu-count">{Object.keys(menuData).length} ITEMS</p>
             </div>
             <div className="menu-items-list">
               {Object.values(menuData).map((categories) => (
                 <div className="menu-item">
                   <div className="menu-item-details">
-                    <h3 className="item-title">{menuData?.[0]?.card?.info?.name}</h3>
+                    <h3 className="item-title">
+                      {menuData?.[0]?.card?.info?.name}
+                    </h3>
                     <p className="item-cost">
-                      {categories?.itemCards?.card?.info?.defaultPrice > 0
+                      {menuData?.[0]?.card?.info?.defaultPrice > 0
                         ? new Intl.NumberFormat("en-IN", {
                             style: "currency",
                             currency: "INR",
-                          }).format(menuData?.[0]?.card?.info?.defaultPrice / 100)
+                          }).format(
+                            menuData?.[0]?.card?.info?.defaultPrice / 100
+                          )
                         : " "}
                     </p>
-                    <p className="item-desc">{menuData?.[0]?.card?.info?.description}</p>
+                    <p className="item-desc">
+                      {menuData?.[0]?.card?.info?.description}
+                    </p>
                   </div>
                   <div className="menu-img-wrapper">
                     {categories?.itemCards?.card?.info?.imageId && (
