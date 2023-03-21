@@ -9,10 +9,10 @@ function Cart() {
     <>
       <Nav />
 
-      {Object.values(cartItems.items).map((cartItems) => {
+      {(cartItems.items).map((items) => {
         return (
           <li type="1" className="text-center">
-            {cartItems}
+            {items}
           </li>
         );
       })}
