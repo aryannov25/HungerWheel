@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
   const cartItems = useSelector((store) => store.cart);
-  console.log(cartItems.items);
+  // console.log(cartItems.items);
   return (
     <div>
       <div className="flex justify-between bg-orange-200">

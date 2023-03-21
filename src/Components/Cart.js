@@ -1,11 +1,21 @@
 import React from "react";
 import Nav from "./Navbar";
+import { useSelector } from "react-redux";
 
 function Cart() {
+  const cartItems = useSelector((store) => store.cart);
+  console.log(cartItems.items);
   return (
     <>
       <Nav />
-      <h1 className="text-center">Cart Page</h1>
+
+      {Object.values(cartItems.items).map((cartItems) => {
+        return (
+          <li type="1" className="text-center">
+            {cartItems}
+          </li>
+        );
+      })}
     </>
   );
 }
