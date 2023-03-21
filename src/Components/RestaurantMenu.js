@@ -11,10 +11,14 @@ const RestaurantMenu = () => {
 
   const restaurant = useRestaurant(resId);
 
-  const menuData =
-    restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[6]?.card
-      ?.card?.categories[4]?.itemCards;
-  console.log(menuData?.[0]?.card?.info?.defaultPrice / 100);
+  const recData =
+    restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(
+      (items) => items.card.card.title == "Recommended"
+    );
+
+  console.log(recData);
+
+  // .find(items => items.card.card.title=="Recommended")
 
   return !restaurant ? (
     <Shimmer />
@@ -63,44 +67,46 @@ const RestaurantMenu = () => {
           <div className="menu-items-container">
             <div className="menu-title-wrap">
               <h3 className="menu-title">Recommended</h3>
-              <p className="menu-count">{Object.keys(menuData).length} ITEMS</p>
+              <p className="menu-count">
+                {Object.keys(recData?.card?.card?.itemCards).length} ITEMS
+              </p>
             </div>
             <div className="menu-items-list">
-              {Object.values(menuData).map((categories) => (
-                <div className="menu-item">
-                  <div className="menu-item-details">
-                    <h3 className="item-title">
-                      {menuData?.[0]?.card?.info?.name}
-                    </h3>
-                    <p className="item-cost">
-                      {menuData?.[0]?.card?.info?.defaultPrice > 0
-                        ? new Intl.NumberFormat("en-IN", {
-                            style: "currency",
-                            currency: "INR",
-                          }).format(
-                            menuData?.[0]?.card?.info?.defaultPrice / 100
-                          )
-                        : " "}
-                    </p>
-                    <p className="item-desc">
-                      {menuData?.[0]?.card?.info?.description}
-                    </p>
+              {Object.values(recData?.card?.card?.itemCards).map(
+                (itemCards) => (
+                  <div className="menu-item">
+                    <div className="menu-item-details">
+                      <h3 className="item-title">
+                        {itemCards?.card?.info?.name}
+                      </h3>
+                      <p className="item-cost">
+                        {itemCards?.card?.info?.price > 0
+                          ? new Intl.NumberFormat("en-IN", {
+                              style: "currency",
+                              currency: "INR",
+                            }).format(itemCards?.card?.info?.price / 100)
+                          : " "}
+                      </p>
+                      <p className="item-desc">
+                        {itemCards?.card?.info?.description}
+                      </p>
+                    </div>
+                    <div className="menu-img-wrapper">
+                      {itemCards?.card?.info?.imageId && (
+                        <img
+                          className="menu-item-img"
+                          src={IMG_CDN_URL + itemCards?.card?.info?.imageId}
+                          alt={itemCards?.card?.info?.description}
+                        />
+                      )}
+                      <button className="btn bg-orange-400 add-btn">
+                        {" "}
+                        ADD +
+                      </button>
+                    </div>
                   </div>
-                  <div className="menu-img-wrapper">
-                    {categories?.itemCards?.card?.info?.imageId && (
-                      <img
-                        className="menu-item-img"
-                        src={IMG_CDN_URL + menuData?.[0]?.card?.info?.imageId}
-                        alt={menuData?.[0]?.card?.info?.description}
-                      />
-                    )}
-                    <button className="btn bg-orange-400 add-btn">
-                      {" "}
-                      ADD +
-                    </button>
-                  </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
           </div>
         </div>

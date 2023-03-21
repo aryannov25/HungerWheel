@@ -6,8 +6,6 @@ import RestaurantMenu from "./src/Components/RestaurantMenu";
 import Store from "./src/Components/Store";
 import About from "./src/Components/About";
 
-
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
@@ -15,7 +13,7 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
       <Route path="/about" element={<About />} />
-      <Route path="/store" element={<Store/>} />
+      <Route path="/store" element={<Store />} />
     </Routes>
   </BrowserRouter>
 );

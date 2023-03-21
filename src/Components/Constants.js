@@ -11,3 +11,6 @@ export function filterData(searchText, restaurants) {
 
 export const FETCH_MENU_URL =
   "https://instafood.onrender.com/api/menu?lat=28.5270362&lng=77.13593279999999&restaurantId=";
+
+
+  // lat=28.5270362&lng=77.13593279999999

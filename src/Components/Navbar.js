@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div>
       <div className="flex justify-between bg-orange-200">
-        <img className="h-20 w-24 m-2" src={Logo} alt="logo" />
+       <a href="/"> <img className="h-20 w-24 m-2" src={Logo} alt="logo" /></a>
         <div className="mt-6 mr-4 items-center">
           <ul className="flex space-x-4 p-2">
             <a href="/">
