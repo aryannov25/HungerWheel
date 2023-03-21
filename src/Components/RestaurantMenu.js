@@ -6,8 +6,11 @@ import Shimmer from "./Shimmer";
 import Nav from "./Navbar";
 import Footer from "./Footer";
 
+
 const RestaurantMenu = () => {
   const { resId } = useParams();
+
+
 
   const restaurant = useRestaurant(resId);
 
@@ -16,7 +19,7 @@ const RestaurantMenu = () => {
       (items) => items.card.card.title == "Recommended"
     );
 
-  console.log(recData);
+  // console.log(recData);
 
   // .find(items => items.card.card.title=="Recommended")
 
