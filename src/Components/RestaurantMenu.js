@@ -5,13 +5,11 @@ import useRestaurant from "./useRestaurant";
 import Shimmer from "./Shimmer";
 import Nav from "./Navbar";
 import Footer from "./Footer";
-
-
+import { useDispatch } from "react-redux";
+import { addItem } from "./cartSlice";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-
-
 
   const restaurant = useRestaurant(resId);
 
@@ -23,6 +21,14 @@ const RestaurantMenu = () => {
   // console.log(recData);
 
   // .find(items => items.card.card.title=="Recommended")
+
+  const dispatch = useDispatch();
+
+  const addFoodItem = (itemCards) => {
+    dispatch(addItem(itemCards));
+  };
+
+
 
   return !restaurant ? (
     <Shimmer />
@@ -103,7 +109,10 @@ const RestaurantMenu = () => {
                           alt={itemCards?.card?.info?.description}
                         />
                       )}
-                      <button className="btn bg-orange-400 add-btn">
+                      <button
+                        className="btn bg-orange-400 add-btn"
+                        onClick={() => addFoodItem(itemCards?.card?.info)}
+                      >
                         {" "}
                         ADD +
                       </button>

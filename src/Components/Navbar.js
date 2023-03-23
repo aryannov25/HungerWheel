@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Navbar() {
-  const cartItems = useSelector((store) => store.cart);
-  // console.log(cartItems.items);
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
   return (
     <div>
       <div className="flex justify-between bg-orange-200">
@@ -21,7 +21,7 @@ function Navbar() {
               <li>About</li>
             </Link>
             <Link to="/cart">
-              <li>Cart - {cartItems.items.length}Items</li>
+              <li>Cart - {cartItems.length}Items</li>
             </Link>
           </ul>
         </div>
