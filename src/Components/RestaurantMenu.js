@@ -28,8 +28,6 @@ const RestaurantMenu = () => {
     dispatch(addItem(itemCards));
   };
 
-
-
   return !restaurant ? (
     <Shimmer />
   ) : (
