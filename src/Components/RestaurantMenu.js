@@ -26,6 +26,7 @@ const RestaurantMenu = () => {
 
   const addFoodItem = (itemCards) => {
     dispatch(addItem(itemCards));
+    localStorage.setItem('foodItems', JSON.stringify(itemCards));
   };
 
   return !restaurant ? (
@@ -76,11 +77,11 @@ const RestaurantMenu = () => {
             <div className="menu-title-wrap">
               <h3 className="menu-title">Recommended</h3>
               <p className="menu-count">
-                {Object.keys(recData?.card?.card?.itemCards).length} ITEMS
+                {(recData?.card?.card?.itemCards).length} ITEMS
               </p>
             </div>
             <div className="menu-items-list">
-              {Object.values(recData?.card?.card?.itemCards).map(
+              {(recData?.card?.card?.itemCards).map(
                 (itemCards) => (
                   <div className="menu-item">
                     <div className="menu-item-details">
