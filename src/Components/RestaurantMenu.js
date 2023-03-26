@@ -26,7 +26,7 @@ const RestaurantMenu = () => {
 
   const addFoodItem = (itemCards) => {
     dispatch(addItem(itemCards));
-    localStorage.setItem('foodItems', JSON.stringify(itemCards));
+    localStorage.setItem("foodItems", JSON.stringify(itemCards));
   };
 
   return !restaurant ? (
@@ -81,44 +81,42 @@ const RestaurantMenu = () => {
               </p>
             </div>
             <div className="menu-items-list">
-              {(recData?.card?.card?.itemCards).map(
-                (itemCards) => (
-                  <div className="menu-item">
-                    <div className="menu-item-details">
-                      <h3 className="item-title">
-                        {itemCards?.card?.info?.name}
-                      </h3>
-                      <p className="item-cost">
-                        {itemCards?.card?.info?.price > 0
-                          ? new Intl.NumberFormat("en-IN", {
-                              style: "currency",
-                              currency: "INR",
-                            }).format(itemCards?.card?.info?.price / 100)
-                          : " "}
-                      </p>
-                      <p className="item-desc">
-                        {itemCards?.card?.info?.description}
-                      </p>
-                    </div>
-                    <div className="menu-img-wrapper">
-                      {itemCards?.card?.info?.imageId && (
-                        <img
-                          className="menu-item-img"
-                          src={IMG_CDN_URL + itemCards?.card?.info?.imageId}
-                          alt={itemCards?.card?.info?.description}
-                        />
-                      )}
-                      <button
-                        className="btn bg-orange-400 add-btn"
-                        onClick={() => addFoodItem(itemCards?.card?.info)}
-                      >
-                        {" "}
-                        ADD +
-                      </button>
-                    </div>
+              {(recData?.card?.card?.itemCards).map((itemCards) => (
+                <div className="menu-item">
+                  <div className="menu-item-details">
+                    <h3 className="item-title">
+                      {itemCards?.card?.info?.name}
+                    </h3>
+                    <p className="item-cost">
+                      {itemCards?.card?.info?.price > 0
+                        ? new Intl.NumberFormat("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                          }).format(itemCards?.card?.info?.price / 100)
+                        : " "}
+                    </p>
+                    <p className="item-desc">
+                      {itemCards?.card?.info?.description}
+                    </p>
                   </div>
-                )
-              )}
+                  <div className="menu-img-wrapper">
+                    {itemCards?.card?.info?.imageId && (
+                      <img
+                        className="menu-item-img"
+                        src={IMG_CDN_URL + itemCards?.card?.info?.imageId}
+                        alt={itemCards?.card?.info?.description}
+                      />
+                    )}
+                    <button
+                      className="btn bg-orange-400 add-btn"
+                      onClick={() => addFoodItem(itemCards?.card?.info)}
+                    >
+                      {" "}
+                      ADD +
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
