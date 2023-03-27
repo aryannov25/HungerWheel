@@ -6,12 +6,14 @@ import { clearCart } from "./cartSlice";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart);
-  console.log(cartItems.items);
+  // console.log(cartItems.items);
 
   const dispatch = useDispatch();
 
-  console.log(localStorage.getItem("foodItems"), "");
+  // console.log();
+  localStorage.getItem("foodItems")
 
+  
   const handleClearCart = () => {
     dispatch(clearCart());
     localStorage.clear();
