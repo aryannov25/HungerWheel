@@ -5,8 +5,8 @@ import useRestaurant from "./useRestaurant";
 import Shimmer from "./Shimmer";
 import Nav from "./Navbar";
 import Footer from "./Footer";
-import { useDispatch } from "react-redux";
-import { addItem } from "./cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem,removeItem } from "./cartSlice";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -24,11 +24,21 @@ const RestaurantMenu = () => {
 
   const dispatch = useDispatch();
 
+  const cartItems = useSelector(store => store.cart.items);
+
+  // const addFoodItem = (itemCards) => {
+  //   dispatch(addItem(itemCards));
+  //   localStorage.setItem("foodItems", JSON.stringify(itemCards));
+  // };
+
   const addFoodItem = (itemCards) => {
     dispatch(addItem(itemCards));
-    localStorage.setItem("foodItems", JSON.stringify(itemCards));
-  };
+}
 
+
+  const removeFoodItem = () => {
+    dispatch(removeItem());
+}
   return !restaurant ? (
     <Shimmer />
   ) : (
@@ -107,13 +117,30 @@ const RestaurantMenu = () => {
                         alt={itemCards?.card?.info?.description}
                       />
                     )}
-                    <button
-                      className="btn bg-orange-400 add-btn"
-                      onClick={() => addFoodItem(itemCards?.card?.info)}
-                    >
-                      {" "}
-                      ADD +
-                    </button>
+                    <div class="text-center w-[118] mt-1 border-2 rounded-md">
+                      <button
+                        className="text-gray-800 font-extrabold px-3"
+                        onClick={() => {
+                          removeFoodItem();
+                        }}
+                      >
+                        -
+                      </button>
+                      <button
+                        className="text-green-800 font-bold  px-2 m-1 text-sm border-x-2 align-middle"
+                        disabled={true}
+                      >
+                        {cartItems.length}
+                      </button>
+                      <button
+                        className="text-green-800 font-extrabold px-3"
+                        onClick={() => {
+                          addFoodItem(itemCards);
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}

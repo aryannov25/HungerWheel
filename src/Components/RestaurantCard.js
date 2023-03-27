@@ -15,7 +15,7 @@ const RestaurantCard = ({
       <img src={IMG_CDN_URL + cloudinaryImageId} />
       <h3 className="font-bold text-lg">{name}</h3>
       <h5>{cuisines.join(", ")}</h5>
-      <h5>{area}</h5>
+      <h3>{area}</h3>
       <span>
         <h4> &#9733; {avgRating}</h4>
         <h4>• {lastMileTravelString}</h4>
