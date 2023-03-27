@@ -9,6 +9,7 @@ function Cart() {
   console.log(cartItems.items);
 
   const dispatch = useDispatch();
+
   console.log(localStorage.getItem("foodItems"), "");
 
   const handleClearCart = () => {
