@@ -118,7 +118,7 @@ const RestaurantMenu = () => {
                         alt={itemCards?.card?.info?.description}
                       />
                     )}
-                    <div class="text-center w-[118] mt-1 border-2 rounded-md">
+                    <div class="">
                       {/* <button
                         className="text-gray-800 font-extrabold px-3"
                         onClick={() => {
@@ -134,7 +134,7 @@ const RestaurantMenu = () => {
                         {cartItems.filter(f => f.name === cartItems.name).length}
                       </button> */}
                       <button
-                        className="text-green-800 font-extrabold px-3"
+                        className="text-green-800 font-extrabold px-3 text-center w-[118] mt-1 border-2 rounded-md"
                         onClick={() => {
                           addFoodItem(itemCards);
                         }}
