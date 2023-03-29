@@ -10,17 +10,17 @@ function Cart() {
 
   const dispatch = useDispatch();
 
-  console.log(cartItems)
+  // console.log(cartItems)
 
-  // const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
-  // useEffect(() => {
-  //   setCart(localStorage.getItem("foodItems"));
-  // }, []);
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("foodItems")));
+  }, []);
 
-  const local = JSON.parse(localStorage.getItem("foodItems"), "");
+  // const local = JSON.parse(localStorage.getItem("foodItems"), "");
 
-  console.log(local);
+  console.log(cart);
   // localStorage.getItem("foodItems")
 
   const handleClearCart = () => {

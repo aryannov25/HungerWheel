@@ -33,6 +33,7 @@ const RestaurantMenu = () => {
 
   const addFoodItem = (itemCards) => {
     dispatch(addItem(itemCards));
+    localStorage.setItem("foodItems", JSON.stringify(itemCards));
 }
 
 
@@ -118,7 +119,7 @@ const RestaurantMenu = () => {
                       />
                     )}
                     <div class="text-center w-[118] mt-1 border-2 rounded-md">
-                      <button
+                      {/* <button
                         className="text-gray-800 font-extrabold px-3"
                         onClick={() => {
                           removeFoodItem();
@@ -130,8 +131,8 @@ const RestaurantMenu = () => {
                         className="text-green-800 font-bold  px-2 m-1 text-sm border-x-2 align-middle"
                         disabled={true}
                       >
-                        {cartItems.length}
-                      </button>
+                        {cartItems.filter(f => f.name === cartItems.name).length}
+                      </button> */}
                       <button
                         className="text-green-800 font-extrabold px-3"
                         onClick={() => {
