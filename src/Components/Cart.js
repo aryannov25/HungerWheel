@@ -10,17 +10,17 @@ function Cart() {
 
   const dispatch = useDispatch();
 
-  // console.log(cartItems)
+  console.log(cartItems)
 
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem("foodItems")));
-  }, []);
+  // useEffect(() => {
+  //   setCart(JSON.parse(localStorage.getItem("foodItems")));
+  // }, []);
 
   // const local = JSON.parse(localStorage.getItem("foodItems"), "");
 
-  console.log(cart);
+  // console.log(cart);
   // localStorage.getItem("foodItems")
 
   const handleClearCart = () => {
@@ -48,26 +48,26 @@ function Cart() {
           <div className="restaurant-menu-content">
             <div className="menu-items-container">
               <div className="menu-items-list">
-                <li type="1">
+                <li type="none">
                   <div className="menu-item">
                     <div className="menu-item-details">
-                      <h3 className="item-title">{items?.info?.name}</h3>
+                      <h3 className="item-title">{items?.card?.info?.name}</h3>
                       <p className="item-cost">
-                        {items.price > 0
+                        {items?.card?.info?.price > 0
                           ? new Intl.NumberFormat("en-IN", {
                               style: "currency",
                               currency: "INR",
-                            }).format(items.price / 100)
+                            }).format(items?.card?.info?.price / 100)
                           : " "}
                       </p>
-                      <p className="item-desc">{items.description}</p>
+                      <p className="item-desc">{items?.card?.info?.description}</p>
                     </div>
                     <div className="menu-img-wrapper">
-                      {items.imageId && (
+                      {items?.card?.info?.imageId && (
                         <img
                           className="menu-item-img"
-                          src={IMG_CDN_URL + items.imageId}
-                          alt={items.description}
+                          src={IMG_CDN_URL + items?.card?.info?.imageId}
+                          alt={items?.card?.info?.description}
                         />
                       )}
                     </div>
