@@ -6,7 +6,7 @@ import { clearCart } from "./cartSlice";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart);
-  console.log(cartItems?.items?.card?.info?.price );
+  console.log(cartItems);
 
   const dispatch = useDispatch();
 
