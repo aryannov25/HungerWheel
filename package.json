@@ -4,7 +4,7 @@
   "description": "This is a live course",
   "scripts": {
     "start": "parcel ./public/index.html",
-    "build": "parcel build index.html",
+    "build": "parcel build ./public/index.html",
     "test": "jest"
   },
   "repository": {
