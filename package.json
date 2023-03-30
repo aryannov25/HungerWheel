@@ -1,9 +1,9 @@
 {
-  "name": "NamasteReactjs",
+  "name": "namaste-react-js",
   "version": "1.0.0",
   "description": "This is a live course",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel index.html && parcel watch index.html",
     "build": "parcel build index.html",
     "test": "jest"
   },
