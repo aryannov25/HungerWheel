@@ -6,22 +6,17 @@ import { clearCart } from "./cartSlice";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart);
-  // console.log(cartItems.items);
+  console.log(cartItems?.items?.card?.info?.price );
 
   const dispatch = useDispatch();
 
-  console.log(cartItems)
+  const [cart, setCart] = useState([]);
 
-  // const [cart, setCart] = useState([]);
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("foodItems")));
+  }, []);
 
-  // useEffect(() => {
-  //   setCart(JSON.parse(localStorage.getItem("foodItems")));
-  // }, []);
-
-  // const local = JSON.parse(localStorage.getItem("foodItems"), "");
-
-  // console.log(cart);
-  // localStorage.getItem("foodItems")
+  console.log(cart);
 
   const handleClearCart = () => {
     dispatch(clearCart());
@@ -60,7 +55,9 @@ function Cart() {
                             }).format(items?.card?.info?.price / 100)
                           : " "}
                       </p>
-                      <p className="item-desc">{items?.card?.info?.description}</p>
+                      <p className="item-desc">
+                        {items?.card?.info?.description}
+                      </p>
                     </div>
                     <div className="menu-img-wrapper">
                       {items?.card?.info?.imageId && (
@@ -78,6 +75,10 @@ function Cart() {
           </div>
         );
       })}
+      <div className="text-end font-bold mt-2">
+        <hr />
+        {/* Total - {items?.card?.info?.price / 100} */}
+      </div>
     </>
   );
 }
