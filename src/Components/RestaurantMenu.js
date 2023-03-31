@@ -30,7 +30,7 @@ const RestaurantMenu = () => {
     dispatch(addItem(itemCards));
     console.log("aasass", itemCards.card);
 
-    let arr = [itemCards.card];
+    let arr = [itemCards];
     console.log(arr);
     localStorage.setItem("foodItems", JSON.stringify(arr));
 

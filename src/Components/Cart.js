@@ -16,11 +16,11 @@ function Cart() {
     setCart(JSON.parse(localStorage.getItem("foodItems")));
   }, []);
 
-  console.log("as",cart);
+  console.log("as", cart);
 
   const handleClearCart = () => {
     dispatch(clearCart());
-    localStorage.clear(cart);
+    localStorage.clear();
   };
 
   return (
@@ -38,9 +38,9 @@ function Cart() {
           Clear Cart
         </button>
       </div>
-{/* 
-  {
-    <h1>{cart.card.info.name}</h1>
+
+      {/* {
+    <h1>{cart.card.info[0].name}</h1>
   } */}
 
       {cartItems.items.map((items) => {
