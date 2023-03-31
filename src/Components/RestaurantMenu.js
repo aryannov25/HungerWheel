@@ -6,7 +6,7 @@ import Shimmer from "./Shimmer";
 import Nav from "./Navbar";
 import Footer from "./Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem,removeItem } from "./cartSlice";
+import { addItem, removeItem } from "./cartSlice";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -24,22 +24,23 @@ const RestaurantMenu = () => {
 
   const dispatch = useDispatch();
 
-  const cartItems = useSelector(store => store.cart.items);
-
-  // const addFoodItem = (itemCards) => {
-  //   dispatch(addItem(itemCards));
-  //   localStorage.setItem("foodItems", JSON.stringify(itemCards));
-  // };
+  const cartItems = useSelector((store) => store.cart.items);
 
   const addFoodItem = (itemCards) => {
     dispatch(addItem(itemCards));
-    localStorage.setItem("foodItems", JSON.stringify(itemCards));
-}
+    console.log("aasass", itemCards.card);
 
+    let arr = [itemCards.card];
+    console.log(arr);
+    localStorage.setItem("foodItems", JSON.stringify(arr));
+
+    let oldData = JSON.parse(localStorage.getItem("foodItems"));
+    localStorage.setItem("foodItems", JSON.stringify([oldData]));
+  };
 
   const removeFoodItem = () => {
     dispatch(removeItem());
-}
+  };
   return !restaurant ? (
     <Shimmer />
   ) : (

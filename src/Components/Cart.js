@@ -16,11 +16,11 @@ function Cart() {
     setCart(JSON.parse(localStorage.getItem("foodItems")));
   }, []);
 
-  console.log(cart);
+  console.log("as",cart);
 
   const handleClearCart = () => {
     dispatch(clearCart());
-    localStorage.clear();
+    localStorage.clear(cart);
   };
 
   return (
@@ -38,6 +38,11 @@ function Cart() {
           Clear Cart
         </button>
       </div>
+{/* 
+  {
+    <h1>{cart.card.info.name}</h1>
+  } */}
+
       {cartItems.items.map((items) => {
         return (
           <div className="restaurant-menu-content">
