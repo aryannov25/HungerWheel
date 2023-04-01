@@ -63,34 +63,41 @@ const RestaurantMenu = () => {
       <Nav />
 
       <div className="grid justify-center m-auto max-w-[70%] p-4">
-        
-          <div className="grid grid-cols-2 gap-12 border-dotted border-b-2 p-2">
-            <div>
-              <h1 className="font-bold p-2">{restaurant?.cards[0]?.card?.card?.info?.name}</h1>
-              <span className="p-2 font-small text-sm text-slate-500 font-sans">
+        <div className="grid grid-cols-2 gap-12 border-dotted border-b-2 p-2">
+          <div>
+            <h1 className="font-bold p-2">
+              {restaurant?.cards[0]?.card?.card?.info?.name}
+            </h1>
+            <span className="p-2 font-small text-sm text-slate-500 font-sans">
               {restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", ")}
-              </span>
-              <span className="p-2 flex font-small text-sm text-slate-500 font-sans">
-                {restaurant?.cards[0]?.card?.card?.info?.areaName},{" "}
-                {restaurant?.cards[0]?.card?.card?.info?.sla?.lastMileTravelString }
-              </span>
-              
-              <span className="p-2  font-small text-sm  font-sans text-green-700">
-                {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733; 
-              </span> ||
-              <span className="p-2  font-bold  font-small text-sm text-slate-500 font-sans">
-                {restaurant?.cards[0]?.card?.card?.info?.totalRatingsString}
-              </span>
-            </div>
-            
-            <div className="restaurant-img rounded-sm">
-              <img src={IMG_CDN_URL +
-              restaurant?.cards[0]?.card?.card?.info?.cloudinaryImageId} alt={restaurant?.cards[0]?.card?.card?.info?.name} />
-
-            </div>
+            </span>
+            <span className="p-2 flex font-small text-sm text-slate-500 font-sans">
+              {restaurant?.cards[0]?.card?.card?.info?.areaName},{" "}
+              {
+                restaurant?.cards[0]?.card?.card?.info?.sla
+                  ?.lastMileTravelString
+              }
+            </span>
+            <span className="p-2  font-small text-sm  font-sans text-green-700">
+              {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733;
+            </span>{" "}
+            ||
+            <span className="p-2  font-bold  font-small text-sm text-slate-500 font-sans">
+              {restaurant?.cards[0]?.card?.card?.info?.totalRatingsString}
+            </span>
           </div>
-       
-      
+
+          <div className="restaurant-img rounded-sm">
+            <img
+              src={
+                IMG_CDN_URL +
+                restaurant?.cards[0]?.card?.card?.info?.cloudinaryImageId
+              }
+              alt={restaurant?.cards[0]?.card?.card?.info?.name}
+            />
+          </div>
+        </div>
+
         <div className="">
           <h1 className="font-bold border-b pt-5 pb-2  m-auto">Menu</h1>
           <ul>
