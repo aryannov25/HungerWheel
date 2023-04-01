@@ -5,24 +5,35 @@ import { IMG_CDN_URL } from "./Constants";
 import { clearCart } from "./cartSlice";
 
 function Cart() {
-  const cartItems = useSelector((store) => store.cart);
-  console.log(cartItems);
+  const cartItems = useSelector((store) => store.cart.items);
+  // console.log(cartItems);
 
   const dispatch = useDispatch();
 
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem("foodItems")));
-  }, []);
+  // useEffect(() => {
+  //   setCart(JSON.parse(localStorage.getItem("foodItems")));
+  // }, []);
 
-  console.log("as", cart);
+  // console.log("as", cart);
+
+  let uniqueFoodItems = [];
+  if (cartItems.length > 0) {
+    let uniqueItems = [...new Set(cartItems)];
+    uniqueFoodItems = uniqueItems.map((value) => [
+      value,
+      cartItems.filter((str) => str === value).length,
+    ]);
+  }
 
   const handleClearCart = () => {
     dispatch(clearCart());
     localStorage.clear();
   };
-
+  const placeOrder = () => {
+    dispatch(clearCart());
+  };
   return (
     <>
       <Nav />
@@ -33,7 +44,10 @@ function Cart() {
       <div className="m-6  ">
         <button
           className="flex space-x-4 p-2 btn bg-green-400"
-          onClick={() => handleClearCart()}
+          onClick={() => {
+            handleClearCart();
+          }}
+          disabled={!cartItems.length}
         >
           Clear Cart
         </button>
@@ -43,47 +57,53 @@ function Cart() {
     <h1>{cart.card.info[0].name}</h1>
   } */}
 
-      {cartItems.items.map((items) => {
-        return (
-          <div className="restaurant-menu-content">
+      
+          <div className="restaurant-menu-content" >
             <div className="menu-items-container">
               <div className="menu-items-list">
-                <li type="none">
+              {Object.values(uniqueFoodItems).map((item, index) => {
+        return (
+                <li type="none" key={index}>
                   <div className="menu-item">
                     <div className="menu-item-details">
-                      <h3 className="item-title">{items?.card?.info?.name}</h3>
+                      <h3 className="item-title">
+                        {item[0].name} - [{item[1]}]
+                      </h3>
                       <p className="item-cost">
-                        {items?.card?.info?.price > 0
-                          ? new Intl.NumberFormat("en-IN", {
-                              style: "currency",
-                              currency: "INR",
-                            }).format(items?.card?.info?.price / 100)
-                          : " "}
+                        ₹ {(item[0]?.price || item[0]?.defaultPrice) / 100}
                       </p>
-                      <p className="item-desc">
-                        {items?.card?.info?.description}
-                      </p>
+                      <p className="item-desc">{item[0]?.description}</p>
                     </div>
                     <div className="menu-img-wrapper">
-                      {items?.card?.info?.imageId && (
+                      {item[0]?.imageId && (
                         <img
-                          className="menu-item-img"
-                          src={IMG_CDN_URL + items?.card?.info?.imageId}
-                          alt={items?.card?.info?.description}
+                          className="w-[118] rounded-md h-[96] object-cover"
+                          src={IMG_CDN_URL + item[0]?.imageId}
+                          alt="item"
                         />
                       )}
                     </div>
                   </div>
                 </li>
+                  );
+                })}
               </div>
             </div>
           </div>
-        );
-      })}
-      <div className="text-end font-bold mt-2">
-        <hr />
-        {/* Total - {items?.card?.info?.price / 100} */}
-      </div>
+      
+      {cartItems?.length > 0 && (
+        <div className="grid">
+          <button
+            className="col-span-1 justify-self-center border rounded-lg m-2 bg-orange-200 p-2"
+            onClick={() => {
+              placeOrder();
+            }}
+            disabled={!cartItems.length}
+          >
+            Place Order
+          </button>
+        </div>
+      )}
     </>
   );
 }

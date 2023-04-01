@@ -7,7 +7,7 @@ function Navbar() {
   // console.log(cartItems);
   return (
     <div>
-      <div className="flex justify-between bg-orange-200">
+      <div className="flex justify-between bg-gray-200">
         <a href="/">
           {" "}
           <img className="h-20 w-24 m-2" src={Logo} alt="logo" />
