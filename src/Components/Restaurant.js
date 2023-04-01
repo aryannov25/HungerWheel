@@ -21,8 +21,8 @@ function Restaurant() {
       "https://instafood.onrender.com/api/restaurants?lat=28.5270362&lng=77.13593279999999"
     );
     const json = await data.json();
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setAllRestaurants(json?.data?.cards[1]?.data?.data?.cards);
+    setFilteredRestaurants(json?.data?.cards[1]?.data?.data?.cards);
   }
 
   if (!allRestaurants) return null;
