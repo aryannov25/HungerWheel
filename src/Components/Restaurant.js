@@ -26,24 +26,21 @@ function Restaurant() {
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
 
-
-const searchData = (searchText, restaurants) => {
-  if (searchText !== "") {
-    const data = filterData(searchText, restaurants);
-    setFilteredRestaurants(data);
-    setErrorMessage("");
-    if (data.length === 0) {
-      setErrorMessage(
-        `Sorry, we couldn't find any results for "${searchText}"`
-      );
+  const searchData = (searchText, restaurants) => {
+    if (searchText !== "") {
+      const data = filterData(searchText, restaurants);
+      setFilteredRestaurants(data);
+      setErrorMessage("");
+      if (data.length === 0) {
+        setErrorMessage(
+          `Sorry, we couldn't find any results for "${searchText}"`
+        );
+      }
+    } else {
+      setErrorMessage("");
+      setFilteredRestaurants(restaurants);
     }
-  } else {
-    setErrorMessage("");
-    setFilteredRestaurants(restaurants);
-  }
-};
-
-
+  };
 
   if (!allRestaurants) return null;
 
@@ -77,22 +74,22 @@ const searchData = (searchText, restaurants) => {
       {allRestaurants?.length === 0 ? (
         <Shimmer />
       ) : (
-      <div className="restaurant-list">
-        {filteredRestaurants.map((restaurant) => {
-          return (
-            <Link
-              to={"/restaurant/" + restaurant.data.id}
-              key={restaurant.data.id}
-            >
-              <RestaurantCard {...restaurant.data} />
-            </Link>
-          );
-        })}
-      </div>
+        <div className="restaurant-list">
+          {filteredRestaurants.map((restaurant) => {
+            return (
+              <Link
+                to={"/restaurant/" + restaurant.data.id}
+                key={restaurant.data.id}
+              >
+                <RestaurantCard {...restaurant.data} />
+              </Link>
+            );
+          })}
+        </div>
       )}
       <Footer />
     </>
   );
-      };
+}
 
 export default Restaurant;
