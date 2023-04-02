@@ -11,6 +11,7 @@ function Restaurant() {
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     getRestaurants();
@@ -25,11 +26,28 @@ function Restaurant() {
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
 
+
+const searchData = (searchText, restaurants) => {
+  if (searchText !== "") {
+    const data = filterData(searchText, restaurants);
+    setFilteredRestaurants(data);
+    setErrorMessage("");
+    if (data.length === 0) {
+      setErrorMessage(
+        `Sorry, we couldn't find any results for "${searchText}"`
+      );
+    }
+  } else {
+    setErrorMessage("");
+    setFilteredRestaurants(restaurants);
+  }
+};
+
+
+
   if (!allRestaurants) return null;
 
-  return allRestaurants?.length === 0 ? (
-    <Shimmer />
-  ) : (
+  return (
     <>
       <Nav />
       <div className="search-container p-3 text-center w-full bg-orange-50 ">
@@ -41,22 +59,25 @@ function Restaurant() {
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
+            searchData(e.target.value, allRestaurants);
           }}
         />
         <button
           data-testid="search-btn"
-          className="p-2 m-2 bg-orange-500 hover:bg-gray-500 text-white rounded-md"
+          className="p-2 m-2 bg-orange-200 hover:bg-gray-100 hover:text-black text-white rounded-md"
           onClick={() => {
-            //need to filter the data
-            const data = filterData(searchText, allRestaurants);
-            // update the state - restaurants
-            setFilteredRestaurants(data);
+            // user click on button searchData function is called
+            searchData(searchText, allRestaurants);
           }}
         >
           Search
         </button>
       </div>
-      <div className="flex flex-wrap ">
+      {errorMessage && <div className="error-container">{errorMessage}</div>}
+      {allRestaurants?.length === 0 ? (
+        <Shimmer />
+      ) : (
+      <div className="restaurant-list">
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link
@@ -68,9 +89,10 @@ function Restaurant() {
           );
         })}
       </div>
+      )}
       <Footer />
     </>
   );
-}
+      };
 
 export default Restaurant;

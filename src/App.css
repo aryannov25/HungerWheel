@@ -2,17 +2,23 @@
   height: 250px;
 }
 
+.error-container {
+  text-align: center;
+  font-size: large;
+  margin: 20px 0;
+}
+
 .restaurant-list {
   width: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  align-self: stretch;
+  
 }
 
 .card {
-  width: 240px;
+  width: 220px;
   height: max-content;
   border-radius: 5px;
   box-shadow: -1px 5px 10px 5px rgba(42, 42, 42, 0.2);
@@ -23,7 +29,7 @@
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: scale(1.1);
 }
 
 .card > img {
@@ -67,7 +73,6 @@
   width: 250px;
   height: 170px;
   border-radius: 5px;
-  margin-right: 5px;
   object-fit: cover;
 }
 .restaurant-summary-details {

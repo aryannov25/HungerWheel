@@ -3,13 +3,15 @@ import Nav from "./Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { IMG_CDN_URL } from "./Constants";
 import { clearCart } from "./cartSlice";
+import Modal from "./Modal";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
   // console.log(cartItems);
 
   const dispatch = useDispatch();
-
+  const [openModal, setOpenModal] = useState(false);
+  const [openInfoModal, setOpenInfoModal] = useState(false);
   // const [cart, setCart] = useState([]);
 
   // useEffect(() => {
@@ -27,17 +29,21 @@ function Cart() {
     ]);
   }
 
+  const modalTitle = "Order Confirmation";
+
+  const info = ["Order Placed succesfully! "];
+
   const handleClearCart = () => {
     dispatch(clearCart());
     localStorage.clear();
   };
   const placeOrder = () => {
     dispatch(clearCart());
+    setOpenModal(true);
   };
   return (
     <>
       <Nav />
-
       <div className="menu-title-wrap menu-items-container text-lg font-bold">
         <h3 className="fw-bolder">Cart Items</h3>
       </div>
@@ -57,12 +63,11 @@ function Cart() {
     <h1>{cart.card.info[0].name}</h1>
   } */}
 
-      
-          <div className="restaurant-menu-content" >
-            <div className="menu-items-container">
-              <div className="menu-items-list">
-              {Object.values(uniqueFoodItems).map((item, index) => {
-        return (
+      <div className="restaurant-menu-content">
+        <div className="menu-items-container">
+          <div className="menu-items-list">
+            {Object.values(uniqueFoodItems).map((item, index) => {
+              return (
                 <li type="none" key={index}>
                   <div className="menu-item">
                     <div className="menu-item-details">
@@ -85,12 +90,12 @@ function Cart() {
                     </div>
                   </div>
                 </li>
-                  );
-                })}
-              </div>
-            </div>
+              );
+            })}
           </div>
-      
+        </div>
+      </div>
+
       {cartItems?.length > 0 && (
         <div className="grid">
           <button
@@ -103,6 +108,12 @@ function Cart() {
             Place Order
           </button>
         </div>
+      )}
+      {openModal && (
+        <Modal closeModal={setOpenModal} info={info} title={modalTitle} />
+      )}
+      {openInfoModal && (
+        <Modal closeModal={setOpenInfoModal} info={infoModel} />
       )}
     </>
   );

@@ -1,11 +1,6 @@
 const Shimmer = () => {
   return (<>
-      <div className="animate-pulse p-5 bg-stone-100">
-          <div className="flex py-1">
-              <div className="h-8 w-36 p-2 m-2 bg-slate-200 rounded"></div>
-              <div className="h-8 w-36 p-2 m-2 bg-slate-200 rounded"></div>
-          </div>
-      </div>
+      
       <div className="animate-pulse p-2 m-2 flex flex-wrap justify-center">
           {Array(10).fill("").map((e, index) => {
               return (

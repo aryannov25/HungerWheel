@@ -87,7 +87,7 @@ const RestaurantMenu = () => {
             </span>
           </div>
 
-          <div className="restaurant-img rounded-sm">
+          <div className="restaurant-img ">
             <img
               src={
                 IMG_CDN_URL +
