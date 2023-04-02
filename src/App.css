@@ -14,7 +14,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  
 }
 
 .card {
@@ -66,7 +65,7 @@
   height: 200px;
   justify-content: center;
   align-items: center;
- background-color: black;
+  background-color: black;
   color: white !important;
 }
 .restaurant-img {
@@ -80,7 +79,6 @@
   flex-direction: column;
   flex-basis: 520px;
   margin: 20px;
- 
 }
 .restaurant-title {
   font-size: 40px;
@@ -188,7 +186,6 @@
   margin-top: 10px;
   border-radius: 5px;
 }
-
 
 /* Shimmer Menu Card CSS Start */
 
