@@ -97,7 +97,7 @@ function Cart() {
           
          
         <button
-          className="p-2 col-span-1 justify-self-center bg-green-400 rounded-md"
+          className="p-2 mt-2 col-span-1 justify-self-center bg-green-400 rounded-md"
           onClick={() => {
             handleClearCart();
           }}
@@ -106,7 +106,7 @@ function Cart() {
           Clear Cart
         </button>
         <button
-            className="col-span-2 justify-self-center border rounded-lg m-2 bg-orange-200 p-2"
+            className="col-span-1 justify-self-center border rounded-lg m-2 bg-orange-200 p-2"
             onClick={() => {
               placeOrder();
             }}
