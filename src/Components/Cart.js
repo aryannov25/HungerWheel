@@ -48,17 +48,7 @@ function Cart() {
       <div className="menu-title-wrap text-center menu-items-container text-lg font-bold">
         <h3 className="fw-bolder">Cart Items- {cartItems.length}</h3>
       </div>
-      <div className="mr-[200px] grid ">
-        <button
-          className="p-2 col-span-1 justify-self-end bg-green-400 rounded-md"
-          onClick={() => {
-            handleClearCart();
-          }}
-          disabled={!cartItems.length}
-        >
-          Clear Cart
-        </button>
-      </div>
+     
       <div className="restaurant-menu-content">
         <div className="menu-items-container">
           <div className="menu-items-list">
@@ -104,8 +94,19 @@ function Cart() {
       })} */}
       {cartItems?.length > 0 && (
         <div className="grid">
-          <button
-            className="col-span-1 justify-self-center border rounded-lg m-2 bg-orange-200 p-2"
+          
+         
+        <button
+          className="p-2 col-span-1 justify-self-center bg-green-400 rounded-md"
+          onClick={() => {
+            handleClearCart();
+          }}
+          disabled={!cartItems.length}
+        >
+          Clear Cart
+        </button>
+        <button
+            className="col-span-2 justify-self-center border rounded-lg m-2 bg-orange-200 p-2"
             onClick={() => {
               placeOrder();
             }}

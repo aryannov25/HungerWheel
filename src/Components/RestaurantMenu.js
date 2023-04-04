@@ -56,12 +56,12 @@ const RestaurantMenu = () => {
   const removeFoodItem = () => {
     dispatch(removeItem());
   };
-  return !restaurant ? (
+  return (
+    <div>
+      <Nav />
+{!restaurant ? (
     <MenuShimmer />
   ) : (
-    <>
-      <Nav />
-
       <div className="grid justify-center m-auto max-w-[70%] p-4">
         <div className="grid grid-cols-2 gap-12 border-dotted border-b-2 p-2">
           <div>
@@ -165,9 +165,10 @@ const RestaurantMenu = () => {
           </ul>
         </div>
       </div>
+      )}
       <Footer />
-    </>
+    </div>
   );
-};
 
+};
 export default RestaurantMenu;
