@@ -37,6 +37,7 @@ function Cart() {
     dispatch(clearCart());
     setOpenModal(true);
   };
+
   return (
     <>
       <Nav />
@@ -45,7 +46,7 @@ function Cart() {
     <h1>{cart.card.info[0].name}</h1>
   } */}
       <div className="menu-title-wrap text-center menu-items-container text-lg font-bold">
-        <h3 className="fw-bolder">Cart Items</h3>
+        <h3 className="fw-bolder">Cart Items- {cartItems.length}</h3>
       </div>
       <div className="mr-[200px] grid ">
         <button
@@ -63,34 +64,44 @@ function Cart() {
           <div className="menu-items-list">
             {Object.values(uniqueFoodItems).map((item, index) => {
               return (
-                <li type="none" key={index}>
-                  <div className="menu-item">
-                    <div className="menu-item-details">
-                      <h3 className="item-title">
-                        {item[0].name} - [{item[1]}]
-                      </h3>
-                      <p className="item-cost">
-                        ₹ {(item[0]?.price || item[0]?.defaultPrice) / 100}
-                      </p>
-                      <p className="item-desc">{item[0]?.description}</p>
+                <div>
+                  <li type="none" key={index}>
+                    <div className="menu-item">
+                      <div className="menu-item-details">
+                        <h3 className="item-title">
+                          {item[0].name} - [{item[1]}]
+                        </h3>
+                        <p className="item-cost">
+                          ₹ {(item[0]?.price || item[0]?.defaultPrice) / 100}
+                        </p>
+                        <p className="item-desc">{item[0]?.description}</p>
+                      </div>
+                      <div className="menu-img-wrapper">
+                        {item[0]?.imageId && (
+                          <img
+                            className="w-[118] rounded-md h-[96] object-cover"
+                            src={IMG_CDN_URL + item[0]?.imageId}
+                            alt="item"
+                          />
+                        )}
+                      </div>
                     </div>
-                    <div className="menu-img-wrapper">
-                      {item[0]?.imageId && (
-                        <img
-                          className="w-[118] rounded-md h-[96] object-cover"
-                          src={IMG_CDN_URL + item[0]?.imageId}
-                          alt="item"
-                        />
-                      )}
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                </div>
               );
             })}
           </div>
         </div>
       </div>
-
+      {/* {uniqueFoodItems.map((item) => {
+        return (
+          <div>
+            <h2 className="menu-title-wrap text-center menu-items-container text-lg font-bold">
+              Total- ₹ {(item[1] * item[0]?.price) / 100}
+            </h2>
+          </div>
+        );
+      })} */}
       {cartItems?.length > 0 && (
         <div className="grid">
           <button
@@ -105,9 +116,6 @@ function Cart() {
         </div>
       )}
       {openModal && <Modal closeModal={setOpenModal} />}
-      {openInfoModal && (
-        <Modal closeModal={setOpenInfoModal} info={infoModel} />
-      )}
     </>
   );
 }
