@@ -12,10 +12,6 @@ function About() {
           page app using React. Below are few details and features.
           <ul className="list-disc mx-8 list-inside">
             <li>
-              App has Info button on each page on top right corner which shows
-              information about the page components.
-            </li>
-            <li>
               I used Parcel.js as bundler.{" "}
               <a
                 className="underline"
