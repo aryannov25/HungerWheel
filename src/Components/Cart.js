@@ -38,7 +38,6 @@ function Cart() {
     setOpenModal(true);
   };
 
-
   return (
     <>
       <Nav />

@@ -59,116 +59,118 @@ const RestaurantMenu = () => {
   return (
     <div>
       <Nav />
-{!restaurant ? (
-    <MenuShimmer />
-  ) : (
-      <div className="grid justify-center m-auto max-w-[70%] p-4">
-        <div className="grid grid-cols-2 gap-12 border-dotted border-b-2 p-2">
-          <div>
-            <h1 className="font-bold p-2">
-              {restaurant?.cards[0]?.card?.card?.info?.name}
-            </h1>
-            <span className="p-2 font-small text-sm text-slate-500 font-sans">
-              {restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", ")}
-            </span>
-            <span className="p-2 flex font-small text-sm text-slate-500 font-sans">
-              {restaurant?.cards[0]?.card?.card?.info?.areaName},{" "}
-              {
-                restaurant?.cards[0]?.card?.card?.info?.sla
-                  ?.lastMileTravelString
-              }
-            </span>
-            <span className="p-2  font-small text-sm  font-sans text-green-700">
-              {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733;
-            </span>{" "}
-            ||
-            <span className="p-2  font-bold  font-small text-sm text-slate-500 font-sans">
-              {restaurant?.cards[0]?.card?.card?.info?.totalRatingsString}
-            </span>
-          </div>
-
-          <div className="restaurant-img ">
-            <img
-              src={
-                IMG_CDN_URL +
-                restaurant?.cards[0]?.card?.card?.info?.cloudinaryImageId
-              }
-              alt={restaurant?.cards[0]?.card?.card?.info?.name}
-            />
-          </div>
-        </div>
-
-        <div className="">
-          <h1 className="font-bold border-b pt-5 pb-2  m-auto">Menu</h1>
-          <ul>
-            {uniqueFoodItems.length > 0 ? (
-              Object.values(uniqueFoodItems).map((item, index) => {
-                if (index < 25) {
-                  return (
-                    <li
-                      className="grid grid-cols-6 justify-center p-2 gap-2 m-2 border-b"
-                      key={index}
-                    >
-                      <>
-                        <div className="col-span-5">
-                          <span className="font-bold">{item?.name}</span>
-                          <br />
-                          <span>
-                            ₹ {(item?.price || item?.defaultPrice) / 100}
-                          </span>
-                          <br />
-                          <span className="font-small text-sm text-slate-500 font-sans">
-                            {item?.description}
-                          </span>
-                        </div>
-                        <div className="relative justify-self-end ">
-                          {item?.imageId && (
-                            <img
-                              className="w-[118] rounded-md h-[96] object-cover"
-                              src={IMG_CDN_URL + item?.imageId}
-                              alt="item"
-                            />
-                          )}
-                          <div class="text-center w-[118] mt-1 border-2 rounded-md">
-                            <button
-                              className="text-gray-800 font-extrabold px-3"
-                              onClick={() => {
-                                removeFoodItem();
-                              }}
-                            >
-                              -
-                            </button>
-                            <button
-                              className="text-green-800 font-bold  px-2 m-1 text-sm border-x-2 align-middle"
-                              disabled={true}
-                            >
-                              {cartItems.filter((f) => f.id === item.id).length}
-                            </button>
-                            <button
-                              className="text-green-800 font-extrabold px-3"
-                              onClick={() => {
-                                addFoodItem(item);
-                              }}
-                            >
-                              +
-                            </button>
-                          </div>
-                        </div>
-                      </>
-                    </li>
-                  );
+      {!restaurant ? (
+        <MenuShimmer />
+      ) : (
+        <div className="grid justify-center m-auto max-w-[70%] p-4">
+          <div className="grid grid-cols-2 gap-12 border-dotted border-b-2 p-2">
+            <div>
+              <h1 className="font-bold p-2">
+                {restaurant?.cards[0]?.card?.card?.info?.name}
+              </h1>
+              <span className="p-2 font-small text-sm text-slate-500 font-sans">
+                {restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", ")}
+              </span>
+              <span className="p-2 flex font-small text-sm text-slate-500 font-sans">
+                {restaurant?.cards[0]?.card?.card?.info?.areaName},{" "}
+                {
+                  restaurant?.cards[0]?.card?.card?.info?.sla
+                    ?.lastMileTravelString
                 }
-              })
-            ) : (
-              <span>No restaurant menu items.</span>
-            )}
-          </ul>
+              </span>
+              <span className="p-2  font-small text-sm  font-sans text-green-700">
+                {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733;
+              </span>{" "}
+              ||
+              <span className="p-2  font-bold  font-small text-sm text-slate-500 font-sans">
+                {restaurant?.cards[0]?.card?.card?.info?.totalRatingsString}
+              </span>
+            </div>
+
+            <div className="restaurant-img ">
+              <img
+                src={
+                  IMG_CDN_URL +
+                  restaurant?.cards[0]?.card?.card?.info?.cloudinaryImageId
+                }
+                alt={restaurant?.cards[0]?.card?.card?.info?.name}
+              />
+            </div>
+          </div>
+
+          <div className="">
+            <h1 className="font-bold border-b pt-5 pb-2  m-auto">Menu</h1>
+            <ul>
+              {uniqueFoodItems.length > 0 ? (
+                Object.values(uniqueFoodItems).map((item, index) => {
+                  if (index < 25) {
+                    return (
+                      <li
+                        className="grid grid-cols-6 justify-center p-2 gap-2 m-2 border-b"
+                        key={index}
+                      >
+                        <>
+                          <div className="col-span-5">
+                            <span className="font-bold">{item?.name}</span>
+                            <br />
+                            <span>
+                              ₹ {(item?.price || item?.defaultPrice) / 100}
+                            </span>
+                            <br />
+                            <span className="font-small text-sm text-slate-500 font-sans">
+                              {item?.description}
+                            </span>
+                          </div>
+                          <div className="relative justify-self-end ">
+                            {item?.imageId && (
+                              <img
+                                className="w-[118] rounded-md h-[96] object-cover"
+                                src={IMG_CDN_URL + item?.imageId}
+                                alt="item"
+                              />
+                            )}
+                            <div class="text-center w-[118] mt-1 border-2 rounded-md">
+                              <button
+                                className="text-gray-800 font-extrabold px-3"
+                                onClick={() => {
+                                  removeFoodItem();
+                                }}
+                              >
+                                -
+                              </button>
+                              <button
+                                className="text-green-800 font-bold  px-2 m-1 text-sm border-x-2 align-middle"
+                                disabled={true}
+                              >
+                                {
+                                  cartItems.filter((f) => f.id === item.id)
+                                    .length
+                                }
+                              </button>
+                              <button
+                                className="text-green-800 font-extrabold px-3"
+                                onClick={() => {
+                                  addFoodItem(item);
+                                }}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      </li>
+                    );
+                  }
+                })
+              ) : (
+                <span>No restaurant menu items.</span>
+              )}
+            </ul>
+          </div>
         </div>
-      </div>
       )}
       <Footer />
     </div>
   );
-
 };
 export default RestaurantMenu;
