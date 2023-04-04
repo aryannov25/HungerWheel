@@ -51,7 +51,7 @@ function Restaurant() {
         <input
           data-testid="search-input"
           type="text"
-          className="focus:bg-blue-200 p-2 w-1/5 m-2"
+          className="focus:bg-blue-100 p-2 w-1/5 m-2"
           placeholder="Search Restaurants"
           value={searchText}
           onChange={(e) => {

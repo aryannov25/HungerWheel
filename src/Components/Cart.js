@@ -29,9 +29,7 @@ function Cart() {
     ]);
   }
 
-  const modalTitle = "Order Confirmation";
 
-  const info = ["Order Placed succesfully! "];
 
   const handleClearCart = () => {
     dispatch(clearCart());
@@ -44,12 +42,16 @@ function Cart() {
   return (
     <>
       <Nav />
-      <div className="menu-title-wrap menu-items-container text-lg font-bold">
+
+      {/* {
+    <h1>{cart.card.info[0].name}</h1>
+  } */}
+      <div className="menu-title-wrap text-center menu-items-container text-lg font-bold">
         <h3 className="fw-bolder">Cart Items</h3>
       </div>
-      <div className="m-6  ">
+      <div className="mr-[200px] grid ">
         <button
-          className="flex space-x-4 p-2 btn bg-green-400"
+          className="p-2 col-span-1 justify-self-end bg-green-400 rounded-md"
           onClick={() => {
             handleClearCart();
           }}
@@ -58,11 +60,6 @@ function Cart() {
           Clear Cart
         </button>
       </div>
-
-      {/* {
-    <h1>{cart.card.info[0].name}</h1>
-  } */}
-
       <div className="restaurant-menu-content">
         <div className="menu-items-container">
           <div className="menu-items-list">
@@ -110,7 +107,7 @@ function Cart() {
         </div>
       )}
       {openModal && (
-        <Modal closeModal={setOpenModal} info={info} title={modalTitle} />
+        <Modal closeModal={setOpenModal} />
       )}
       {openInfoModal && (
         <Modal closeModal={setOpenInfoModal} info={infoModel} />

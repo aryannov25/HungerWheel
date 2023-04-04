@@ -8,15 +8,15 @@ function Navbar() {
   return (
     <div>
       <div className="flex justify-between bg-gray-200">
-        <a href="/">
+        <Link to="/">
           {" "}
           <img className="h-20 w-24 m-2" src={Logo} alt="logo" />
-        </a>
+        </Link>
         <div className="mt-6 mr-4 items-center">
           <ul className="flex space-x-4 p-2">
-            <a href="/">
+            <Link to="/">
               <li>Home</li>
-            </a>
+            </Link>
             <Link to="/about">
               <li>About</li>
             </Link>

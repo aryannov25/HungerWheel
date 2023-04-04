@@ -73,6 +73,7 @@
   height: 170px;
   border-radius: 5px;
   object-fit: cover;
+  margin-left: 250px;
 }
 .restaurant-summary-details {
   display: flex;
