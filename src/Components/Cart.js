@@ -38,6 +38,7 @@ function Cart() {
     setOpenModal(true);
   };
 
+
   return (
     <>
       <Nav />
@@ -95,7 +96,7 @@ function Cart() {
       {cartItems?.length > 0 && (
         <div className="grid">
           <button
-            className="p-2 mt-2 col-span-1 justify-self-center bg-green-400 rounded-md"
+            className="p-2 mt-2 col-span-1 justify-self-center hover:bg-green-100 bg-green-400 rounded-md"
             onClick={() => {
               handleClearCart();
             }}

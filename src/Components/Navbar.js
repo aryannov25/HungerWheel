@@ -20,13 +20,16 @@ function Navbar() {
             <Link to="/about">
               <li>About</li>
             </Link>
-            <Link to="/cart">
-              <li>Cart - {cartItems.length}Items</li>
-            </Link>
           </ul>
         </div>
         <div className="mt-6 mr-4 items-center">
-          <ul className="flex space-x-4 p-2"></ul>
+          <ul className="flex space-x-4 p-2">
+            <Link to="/cart">
+              <li>
+                <i class="fa fa-shopping-cart"></i> Cart - {cartItems.length}
+              </li>
+            </Link>
+          </ul>
         </div>
       </div>
     </div>
