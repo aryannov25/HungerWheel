@@ -9,8 +9,14 @@ const Modal = ({ closeModal, info, title }) => {
             <div className="p-2 font-bold border-b text-black">
               Order Confirmation: We have recieved your order
             </div>
-            <div className="p-2 border-b"> <p>Order Placed succesfully! <br/>
-            Thank you for ordering from Hunger Wheel <span className="text-lg">&#128588;</span></p></div>
+            <div className="p-2 border-b">
+              {" "}
+              <p>
+                Order Placed succesfully! <br />
+                Thank you for ordering from Hunger Wheel{" "}
+                <span className="text-lg">&#128588;</span>
+              </p>
+            </div>
             <div>
               <Link to="/">
                 <button

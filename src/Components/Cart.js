@@ -29,8 +29,6 @@ function Cart() {
     ]);
   }
 
-
-
   const handleClearCart = () => {
     dispatch(clearCart());
     localStorage.clear();
@@ -106,9 +104,7 @@ function Cart() {
           </button>
         </div>
       )}
-      {openModal && (
-        <Modal closeModal={setOpenModal} />
-      )}
+      {openModal && <Modal closeModal={setOpenModal} />}
       {openInfoModal && (
         <Modal closeModal={setOpenInfoModal} info={infoModel} />
       )}
