@@ -13,4 +13,3 @@ export const FETCH_MENU_URL =
   "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.5270362&lng=77.13593279999999&restaurantId=";
 
 // lat=28.5270362&lng=77.13593279999999
-
