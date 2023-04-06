@@ -14,10 +14,13 @@ const RestaurantMenu = () => {
   const restaurant = useRestaurant(resId);
 
   const restaurantInfo = restaurant?.cards[0]?.card?.card?.info;
+ 
   let result = [],
     uniqueFoodItems = [];
   const restaurantMenuInfo = restaurant?.cards; //[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards//[1]?.card.card.itemCards;
+// const menu = restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(x => x.card.card.title=="Recommended")
 
+//   console.log(menu)
   const customFilter = (object, result) => {
     if (object.hasOwnProperty("itemCards")) result.push(object);
 
