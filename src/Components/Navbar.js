@@ -1,4 +1,4 @@
-import Logo from "../assets/img/Logo.png";
+import Logo from "../assets/img/Logo.svg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -7,10 +7,10 @@ function Navbar() {
   // console.log(cartItems);
   return (
     <div>
-      <div className="flex justify-between bg-gray-200">
+      <div className="flex justify-between bg-orange-200">
         <Link to="/">
           {" "}
-          <img className="h-20 w-24 m-2" src={Logo} alt="logo" />
+          <img className="h-20 w-48 m-2" src={Logo} alt="logo" />
         </Link>
         <div className="mt-6 mr-4 items-center">
           <ul className="flex space-x-4 p-2">
