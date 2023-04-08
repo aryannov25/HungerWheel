@@ -42,9 +42,7 @@ function Cart() {
     <>
       <Nav />
 
-      {/* {
-    <h1>{cart.card.info[0].name}</h1>
-  } */}
+
       <div className="menu-title-wrap text-center menu-items-container text-lg font-bold">
         <h3 className="fw-bolder">Cart Items- {cartItems.length}</h3>
       </div>
