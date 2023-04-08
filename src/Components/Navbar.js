@@ -1,4 +1,4 @@
-import Logo from "../assets/img/HungerWheel.png";
+import Logo from "../assets/img/Logo.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
