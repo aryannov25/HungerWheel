@@ -147,7 +147,6 @@
   overflow: hidden;
 }
 
-
 .item-desc {
   margin-top: 14px;
   line-height: 1.3;
@@ -264,3 +263,7 @@
   }
 }
 /*Animation to Shimmer Component Card and Menu card End*/
+
+.navlogo {
+  object-fit: fill;
+}
