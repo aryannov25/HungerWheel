@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { IMG_CDN_URL } from "./Constants";
 import { clearCart } from "./cartSlice";
 import Modal from "./Modal";
+import Footer from "./Footer";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
@@ -113,6 +114,7 @@ function Cart() {
         </div>
       )}
       {openModal && <Modal closeModal={setOpenModal} />}
+      <Footer />
     </>
   );
 }

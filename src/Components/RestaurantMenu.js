@@ -14,13 +14,16 @@ const RestaurantMenu = () => {
   const restaurant = useRestaurant(resId);
 
   const restaurantInfo = restaurant?.cards[0]?.card?.card?.info;
- 
+
   let result = [],
     uniqueFoodItems = [];
   const restaurantMenuInfo = restaurant?.cards; //[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards//[1]?.card.card.itemCards;
-// const menu = restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(x => x.card.card.title=="Recommended")
 
-//   console.log(menu)
+
+  // const menu = restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(x => x.card.card.title=="Recommended")
+  //   console.log(menu)
+
+  
   const customFilter = (object, result) => {
     if (object.hasOwnProperty("itemCards")) result.push(object);
 
@@ -66,31 +69,33 @@ const RestaurantMenu = () => {
         <MenuShimmer />
       ) : (
         <div className="grid justify-center m-auto max-w-[70%] p-4">
-          <div className="grid grid-cols-2 gap-12 border-dotted border-b-2 p-2">
+          <div className="grid grid-cols-2 text-center gap-12 border-dotted border-b-2 p-2">
             <div>
-              <h1 className="font-bold p-2">
+              <h1 className="font-bold p-2 ">
                 {restaurant?.cards[0]?.card?.card?.info?.name}
               </h1>
-              <span className="p-2 font-small text-sm text-slate-500 font-sans">
-                {restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", ")}
-              </span>
-              <span className="p-2 flex font-small text-sm text-slate-500 font-sans">
-                {restaurant?.cards[0]?.card?.card?.info?.areaName},{" "}
-                {
-                  restaurant?.cards[0]?.card?.card?.info?.sla
-                    ?.lastMileTravelString
-                }
-              </span>
-              <span className="p-2  font-small text-sm  font-sans text-green-700">
-                {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733;
-              </span>{" "}
-              ||
-              <span className="p-2  font-bold  font-small text-sm text-slate-500 font-sans">
-                {restaurant?.cards[0]?.card?.card?.info?.totalRatingsString}
-              </span>
+              <ul>
+                <li className="p-2  font-small text-sm text-slate-500 font-sans">
+                  {restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", ")}
+                </li>
+                <li className="p-2  font-small text-sm text-slate-500 font-sans">
+                  {restaurant?.cards[0]?.card?.card?.info?.areaName},{" "}
+                  {
+                    restaurant?.cards[0]?.card?.card?.info?.sla
+                      ?.lastMileTravelString
+                  }
+                </li>
+
+                <li className="p-2  font-small text-sm  font-sans text-green-700">
+                  {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733; ||
+                  <span className="p-2  flexfont-bold  font-small text-sm text-slate-500 font-sans">
+                    {restaurant?.cards[0]?.card?.card?.info?.totalRatingsString}
+                  </span>
+                </li>
+              </ul>
             </div>
 
-            <div className="restaurant-img ">
+            <div className="restaurant-img rounded-lg">
               <img
                 src={
                   IMG_CDN_URL +

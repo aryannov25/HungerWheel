@@ -10,7 +10,7 @@ function Navbar() {
       <div className="flex justify-between bg-orange-200">
         <Link to="/">
           {" "}
-          <img className="h-20 w-48 m-2 navlogo" src={Logo} alt="logo" />
+          <img className="h-20 w-38 m-2 navlogo" src={Logo} alt="logo" />
         </Link>
         <div className="mt-6 mr-4 items-center">
           <ul className="flex space-x-4 p-2">
