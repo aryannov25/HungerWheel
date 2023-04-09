@@ -21,7 +21,7 @@ const Modal = ({ closeModal, info, title }) => {
               <Link to="/">
                 <button
                   href="/"
-                  class="px-4 py-2 mt-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm float-right"
+                  className="px-4 py-2 mt-2 font-semibold text-sm bg-cyan-500 text-white rounded-full shadow-sm float-right"
                   onClick={() => closeModal(false)}
                 >
                   Close

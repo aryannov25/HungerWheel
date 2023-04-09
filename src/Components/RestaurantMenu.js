@@ -132,7 +132,7 @@ const RestaurantMenu = () => {
                                 alt="item"
                               />
                             )}
-                            <div class="text-center w-[118] mt-1 border-2 rounded-md">
+                            <div className="text-center w-[118] mt-1 border-2 rounded-md">
                               <button
                                 className="text-gray-800 font-extrabold px-3"
                                 onClick={() => {
