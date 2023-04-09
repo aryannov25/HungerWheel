@@ -29,6 +29,12 @@ function Cart() {
       cartItems.filter((str) => str === value).length,
     ]);
   }
+  const total =
+    cartItems.length > 0
+      ? cartItems
+          .map((x) => (x.price > 0 ? x.price / 100 : x.defaultPrice / 100))
+          .reduce((sum, a) => sum + a, 0)
+      : 0;
 
   const handleClearCart = () => {
     dispatch(clearCart());
@@ -42,12 +48,21 @@ function Cart() {
   return (
     <>
       <Nav />
+      {cartItems?.length > 0 && (
+        <div className="menu-title-wrap text-center menu-items-container text-lg font-bold">
+          <h3 className="fw-bolder">Cart Items- {cartItems.length}</h3>
+        </div>
+      )}
 
-
-      <div className="menu-title-wrap text-center menu-items-container text-lg font-bold">
-        <h3 className="fw-bolder">Cart Items- {cartItems.length}</h3>
-      </div>
-
+      {cartItems?.length == 0 && (
+        <div className="mt-4 text-center">
+          <h1 className="text-center font-bold text-2xl">Cart Empty</h1>
+          <img
+            className="w-50 justify-center "
+            src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2"
+          />
+        </div>
+      )}
       <div className="restaurant-menu-content">
         <div className="menu-items-container">
           <div className="menu-items-list">
@@ -82,15 +97,20 @@ function Cart() {
           </div>
         </div>
       </div>
-      {/* {uniqueFoodItems.map((item) => {
-        return (
-          <div>
-            <h2 className="menu-title-wrap text-center menu-items-container text-lg font-bold">
-              Total- ₹ {(item[1] * item[0]?.price) / 100}
-            </h2>
+
+      {cartItems.length > 0 ? (
+        <>
+          <div className="items-start text-center mt-3">
+            <div className="font-bold">
+              <label>Item Total </label>
+              {`₹${total}`}
+            </div>
           </div>
-        );
-      })} */}
+        </>
+      ) : (
+        [null]
+      )}
+
       {cartItems?.length > 0 && (
         <div className="grid">
           <button
