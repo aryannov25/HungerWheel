@@ -1,7 +1,15 @@
-import React from 'react'
+import React from "react";
+import Nav from "./Navbar";
+import Footer from "./Footer";
 
-export default function Contact() {
+function Contact() {
   return (
-    <div>Contact</div>
-  )
+    <>
+      <Nav />
+
+      <div>Contact Page</div>
+      <Footer />
+    </>
+  );
 }
+export default Contact;
