@@ -22,7 +22,6 @@ const RestaurantMenu = () => {
 
   // const menu = restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(x => x.card.card.title=="Recommended")
   //   console.log(menu)
-
   
   const customFilter = (object, result) => {
     if (object.hasOwnProperty("itemCards")) result.push(object);
@@ -107,7 +106,7 @@ const RestaurantMenu = () => {
           </div>
 
           <div className="">
-            <h1 className="font-bold border-b pt-5 pb-2  m-auto">Menu</h1>
+            <h1 className="font-bold border-b pt-2 pb-2  m-auto">Menu</h1>
             <ul>
               {uniqueFoodItems.length > 0 ? (
                 Object.values(uniqueFoodItems).map((item, index) => {
