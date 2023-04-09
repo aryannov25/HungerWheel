@@ -68,7 +68,7 @@ const RestaurantMenu = () => {
         <MenuShimmer />
       ) : (
         <div className="grid justify-center m-auto max-w-[70%] p-4">
-          <div className="grid grid-cols-2 text-center gap-12 border-dotted border-b-2 p-2">
+          <div className="grid grid-cols-2  gap-12 border-dotted border-b-2 p-2">
             <div>
               <h1 className="font-bold p-2 ">
                 {restaurant?.cards[0]?.card?.card?.info?.name}
