@@ -56,11 +56,10 @@ function Cart() {
 
       {cartItems?.length == 0 && (
         <div className="mt-4 text-center">
-          <h1 className="text-center font-bold text-2xl">Cart Empty</h1>
-          <img
-            className="w-50 justify-center "
-            src="https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_480/Cart_empty_-_menu_2x_ejjkf2"
-          />
+          <h1 className="font-bold text-2xl">Cart Empty</h1>
+          <h2 className="mt-2 font-semibold text-2xl">
+            You can go to home page to view more restaurants
+          </h2>
         </div>
       )}
       <div className="restaurant-menu-content">
