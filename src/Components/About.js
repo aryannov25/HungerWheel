@@ -9,7 +9,8 @@ function About() {
       <div className="grid p-2 m-2">
         <span className="mt-2">
           <b>App description:</b> This is a food ordering app created as single
-          page app using React. Below are few details and features.
+          page app using React. <br />
+          Below are few details and features :-
           <ul className="list-disc mx-8 list-inside">
             <li>
               I used Parcel.js as bundler.{" "}
