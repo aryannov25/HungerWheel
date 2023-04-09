@@ -6,7 +6,6 @@ function Contact() {
   return (
     <>
       <Nav />
-
       <div>Contact Page</div>
       <Footer />
     </>
