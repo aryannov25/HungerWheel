@@ -15,6 +15,8 @@ const RestaurantMenu = () => {
 
   const restaurantInfo = restaurant?.cards[0]?.card?.card?.info;
 
+// console.log(restaurant)
+
   let result = [],
     uniqueFoodItems = [];
   const restaurantMenuInfo = restaurant?.cards; //[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards//[1]?.card.card.itemCards;
