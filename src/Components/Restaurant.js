@@ -47,7 +47,7 @@ function Restaurant() {
 
   return (
     <>
-      <Nav />
+      
       <div className="search-container p-3 text-center w-full bg-orange-50 ">
         <input
           data-testid="search-input"
@@ -88,7 +88,7 @@ function Restaurant() {
           })}
         </div>
       )}
-      <Footer />
+      
     </>
   );
 }
