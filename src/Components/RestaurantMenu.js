@@ -15,7 +15,7 @@ const RestaurantMenu = () => {
 
   const restaurantInfo = restaurant?.cards[0]?.card?.card?.info;
 
-// console.log(restaurant)
+  // console.log(restaurant)
 
   let result = [],
     uniqueFoodItems = [];
