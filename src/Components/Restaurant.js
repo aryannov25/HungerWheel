@@ -47,7 +47,6 @@ function Restaurant() {
 
   return (
     <>
-      
       <div className="search-container p-3 text-center w-full bg-orange-50 ">
         <input
           data-testid="search-input"
@@ -88,7 +87,6 @@ function Restaurant() {
           })}
         </div>
       )}
-      
     </>
   );
 }
