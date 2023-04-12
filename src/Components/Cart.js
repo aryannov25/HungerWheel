@@ -58,7 +58,7 @@ function Cart() {
         <div className="mt-4 text-center">
           <h1 className="font-bold text-2xl">Cart Empty</h1>
           <h2 className="mt-2 font-semibold text-2xl">
-            You can go to <a href="/" className="font-bold">home page</a> to view more restaurants
+            You can go to <a href="/" className="font-bold">Home Page</a> to view more restaurants.
           </h2>
         </div>
       )}
