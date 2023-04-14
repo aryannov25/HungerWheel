@@ -184,6 +184,11 @@
   border-radius: 5px;
 }
 
+.price-items-container {
+  
+  width: 850px;
+}
+
 /* Shimmer Menu Card CSS Start */
 
 .restaurant-summary .shimmer-img {

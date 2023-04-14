@@ -107,10 +107,11 @@ function Cart() {
         <>
           {" "}
           <div className="restaurant-menu-content">
-            <div className="menu-items-container">
+            <div className="price-items-container">
               <div className="menu-items-list">
-                <h1 className="text-start">Price Breakup</h1>
-                <div className="items-start text-start ">
+                <h1 className="text-center font-semibold ">Price Breakup</h1>
+                <hr/>
+                <div className="items-start text-start mt-2 mb-2">
                   <div className="">
                     <label>Item Total </label>
                     {`₹${total}`}
@@ -119,10 +120,12 @@ function Cart() {
                   <div>
                     <label>Delivery Charges ₹29</label>
                   </div>
-                  <label className="font-bold text-center">
-                    Total Amount ₹{final}
-                  </label>
-                </div>
+                  </div>
+                  <hr/>
+                  <div className="font-bold mt-2">
+                    Total Amount :- ₹{final}
+                  </div>
+                
               </div>
             </div>
           </div>
