@@ -36,6 +36,8 @@ function Cart() {
           .reduce((sum, a) => sum + a, 0)
       : 0;
 
+  const final = total + 49 + 29;
+
   const handleClearCart = () => {
     dispatch(clearCart());
     localStorage.clear();
@@ -103,10 +105,25 @@ function Cart() {
 
       {cartItems.length > 0 ? (
         <>
-          <div className="items-start text-center mt-3">
-            <div className="font-bold">
-              <label>Item Total </label>
-              {`₹${total}`}
+          {" "}
+          <div className="restaurant-menu-content">
+            <div className="menu-items-container">
+              <div className="menu-items-list">
+                <h1 className="text-start">Price Breakup</h1>
+                <div className="items-start text-start ">
+                  <div className="">
+                    <label>Item Total </label>
+                    {`₹${total}`}
+                  </div>
+                  <label>Taxes ₹49</label>
+                  <div>
+                    <label>Delivery Charges ₹29</label>
+                  </div>
+                  <label className="font-bold text-center">
+                    Total Amount ₹{final}
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
         </>
