@@ -110,7 +110,7 @@ function Cart() {
             <div className="price-items-container">
               <div className="menu-items-list">
                 <h1 className="text-center font-semibold ">Price Breakup</h1>
-                <hr/>
+                <hr />
                 <div className="items-start text-start mt-2 mb-2">
                   <div className="">
                     <label>Item Total </label>
@@ -120,12 +120,9 @@ function Cart() {
                   <div>
                     <label>Delivery Charges ₹29</label>
                   </div>
-                  </div>
-                  <hr/>
-                  <div className="font-bold mt-2">
-                    Total Amount :- ₹{final}
-                  </div>
-                
+                </div>
+                <hr />
+                <div className="font-bold mt-2">Total Amount :- ₹{final}</div>
               </div>
             </div>
           </div>
