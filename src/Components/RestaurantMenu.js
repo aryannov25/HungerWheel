@@ -118,7 +118,7 @@ const RestaurantMenu = () => {
                         key={index}
                       >
                         <>
-                          <div className="lg:col-span-5  ">
+                          <div className="lg:col-span-5">
                             <span className="font-bold">{item?.name}</span>
                             <br />
                             <span>
