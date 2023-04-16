@@ -85,7 +85,6 @@ const RestaurantMenu = () => {
                       ?.lastMileTravelString
                   }
                 </li>
-
                 <li className="p-2 font-small text-sm  font-sans text-green-700">
                   {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733; ||
                   <span className="p-2  flexfont-bold  font-small text-sm text-slate-500 font-sans">
