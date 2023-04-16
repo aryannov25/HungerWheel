@@ -17,7 +17,7 @@
 }
 
 .card {
-  width: 240px;
+  width: 250px;
   height: max-content;
   border-radius: 5px;
   box-shadow: -1px 5px 10px 5px rgba(42, 42, 42, 0.2);
