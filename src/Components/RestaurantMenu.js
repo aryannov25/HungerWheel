@@ -69,16 +69,16 @@ const RestaurantMenu = () => {
         <MenuShimmer />
       ) : (
         <div className="grid justify-center m-auto max-w-[70%] p-4">
-          <div className="grid grid-cols-2  gap-12 border-dotted border-b-2 p-2">
-            <div>
-              <h1 className="font-bold p-2 ">
+          <div className="grid lg:grid-cols-2 gap-12 border-dotted border-b-2 p-2 sm:grid-cols-none ">
+            <div className="text-center">
+              <h1 className="font-bold p-2">
                 {restaurant?.cards[0]?.card?.card?.info?.name}
               </h1>
               <ul>
-                <li className="p-2  font-small text-sm text-slate-500 font-sans">
+                <li className="p-2 font-small text-sm text-slate-500 font-sans">
                   {restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", ")}
                 </li>
-                <li className="p-2  font-small text-sm text-slate-500 font-sans">
+                <li className="p-2 font-small text-sm text-slate-500 font-sans">
                   {restaurant?.cards[0]?.card?.card?.info?.areaName},{" "}
                   {
                     restaurant?.cards[0]?.card?.card?.info?.sla
@@ -86,7 +86,7 @@ const RestaurantMenu = () => {
                   }
                 </li>
 
-                <li className="p-2  font-small text-sm  font-sans text-green-700">
+                <li className="p-2 font-small text-sm  font-sans text-green-700">
                   {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733; ||
                   <span className="p-2  flexfont-bold  font-small text-sm text-slate-500 font-sans">
                     {restaurant?.cards[0]?.card?.card?.info?.totalRatingsString}
@@ -95,7 +95,7 @@ const RestaurantMenu = () => {
               </ul>
             </div>
 
-            <div className="restaurant-img rounded-lg">
+            <div className="restaurant-img rounded-lg md:w-[118] sm:w-[118] sm:h-full  sm:rounded-md ">
               <img
                 src={
                   IMG_CDN_URL +
@@ -107,29 +107,29 @@ const RestaurantMenu = () => {
           </div>
 
           <div className="">
-            <h1 className="font-bold border-b pt-2 pb-2  m-auto">Menu</h1>
+            <h1 className="font-bold border-b pt-2 pb-2 m-auto">Menu</h1>
             <ul>
               {uniqueFoodItems.length > 0 ? (
                 Object.values(uniqueFoodItems).map((item, index) => {
                   if (index < 25) {
                     return (
                       <li
-                        className="grid grid-cols-6 justify-center p-2 gap-2 m-2 border-b"
+                        className="grid lg:grid-cols-8 justify-center p-2 gap-2 m-2 border-b sm:grid-cols-4"
                         key={index}
                       >
                         <>
-                          <div className="col-span-5">
+                          <div className="lg:col-span-5  ">
                             <span className="font-bold">{item?.name}</span>
                             <br />
                             <span>
                               ₹ {(item?.price || item?.defaultPrice) / 100}
                             </span>
                             <br />
-                            <span className="font-small text-sm text-slate-500 font-sans">
+                            <span className="font-small mt-2 text-sm text-slate-500 font-sans hidden md:block">
                               {item?.description}
                             </span>
                           </div>
-                          <div className="relative justify-self-end ">
+                          <div className="relative justify-self-end col-span-3">
                             {item?.imageId && (
                               <img
                                 className="w-[118] rounded-md h-[96] object-cover"
@@ -137,7 +137,7 @@ const RestaurantMenu = () => {
                                 alt="item"
                               />
                             )}
-                            <div className="text-center w-[118] mt-1 border-2 rounded-md">
+                            <div className="text-center w-[118]  mt-1 border-2 rounded-md">
                               <button
                                 className="text-gray-800 font-extrabold px-3"
                                 onClick={() => {
@@ -147,7 +147,7 @@ const RestaurantMenu = () => {
                                 -
                               </button>
                               <button
-                                className="text-green-800 font-bold  px-2 m-1 text-sm border-x-2 align-middle"
+                                className="text-green-800 font-bold px-2 m-1 text-sm border-x-2 align-middle"
                                 disabled={true}
                               >
                                 {

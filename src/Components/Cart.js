@@ -51,7 +51,7 @@ function Cart() {
     <>
       <Nav />
       {cartItems?.length > 0 && (
-        <div className="menu-title-wrap text-center menu-items-container text-lg font-bold">
+        <div className="mt-4 text-center text-lg font-bold">
           <h3 className="fw-bolder">Cart Items- {cartItems.length}</h3>
         </div>
       )}
@@ -83,7 +83,9 @@ function Cart() {
                         <p className="item-cost">
                           ₹ {(item[0]?.price || item[0]?.defaultPrice) / 100}
                         </p>
-                        <p className="item-desc">{item[0]?.description}</p>
+                        <p className="item-desc hidden md:block ">
+                          {item[0]?.description}
+                        </p>
                       </div>
                       <div className="menu-img-wrapper">
                         {item[0]?.imageId && (
@@ -108,21 +110,23 @@ function Cart() {
           {" "}
           <div className="restaurant-menu-content">
             <div className="price-items-container">
-              <div className="menu-items-list">
+              <div className=" ">
                 <h1 className="text-center font-semibold ">Price Breakup</h1>
                 <hr />
-                <div className="items-start text-start mt-2 mb-2">
-                  <div className="">
-                    <label>Item Total </label>
-                    {`₹${total}`}
+                <div className="">
+                  <div className="items-start text-start mt-2 mb-2 ">
+                    <div className="">
+                      <label>Item Total </label>
+                      {`₹${total}`}
+                    </div>
+                    <label>Taxes ₹49</label>
+                    <div>
+                      <label>Delivery Charges ₹29</label>
+                    </div>
                   </div>
-                  <label>Taxes ₹49</label>
-                  <div>
-                    <label>Delivery Charges ₹29</label>
-                  </div>
+                  <hr />
+                  <div className="font-bold mt-2">Total Amount :- ₹{final}</div>
                 </div>
-                <hr />
-                <div className="font-bold mt-2">Total Amount :- ₹{final}</div>
               </div>
             </div>
           </div>
