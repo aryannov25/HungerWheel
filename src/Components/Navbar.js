@@ -29,7 +29,8 @@ function Navbar() {
           <ul className="flex space-x-4 p-2">
             <Link to="/cart">
               <li>
-                <i className="fa fa-shopping-cart"></i> Cart - {cartItems.length}
+                <i className="fa fa-shopping-cart"></i> Cart -{" "}
+                {cartItems.length}
               </li>
             </Link>
           </ul>
