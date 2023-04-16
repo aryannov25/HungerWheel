@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:aryannov25/NamasteReactjs.git"
+    "url": "git@github.com:aryannov25/HungerWheel.git"
   },
   "author": "Aryan Chaudhary",
   "license": "ISC",
-  "homepage": "https://github.com/aryannov25/NamasteReactjs.git",
+  "homepage": "https://github.com/aryannov25/HungerWheel.git",
   "devDependencies": {
     "@babel/core": "^7.20.7",
     "babel-plugin-transform-remove-console": "^6.9.4",
