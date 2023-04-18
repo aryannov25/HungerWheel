@@ -9,7 +9,6 @@ import store from "./src/Components/Store";
 import { Provider } from "react-redux";
 import Contact from "./src/Components/Contact";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
