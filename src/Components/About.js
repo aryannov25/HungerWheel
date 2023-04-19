@@ -51,7 +51,6 @@ function About() {
             <li>
               Used <b>Shimmer</b> component to make UI more good.
             </li>
-
             <li>
               Used <b>Tailwind CSS</b> for designing UI.{" "}
               <a
