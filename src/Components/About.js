@@ -32,12 +32,12 @@ function About() {
               <b>useContext</b>.
             </li>
             <li>
-              Used<b> Swiggy's Public API</b> for fetching Restaurant List and Menu.
+              Used<b> Swiggy's Public API</b> for fetching Restaurant List and
+              Menu.
             </li>
             <li>
               Created custom hooks like:
               <ul className="list-disc mx-8 list-inside">
-               
                 <li>
                   <b>useRestaurantMenu</b> (Used to get list of menu items of a
                   selected restaurant)
@@ -49,7 +49,7 @@ function About() {
               app <b>performant</b>.
             </li>
             <li>
-              Built own <b>Shimmer</b> component to make UI more good.
+              Used <b>Shimmer</b> component to make UI more good.
             </li>
 
             <li>
