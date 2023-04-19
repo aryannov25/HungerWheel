@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IMG_CDN_URL } from "./Constants";
-import useRestaurant from "./useRestaurant";
+import useRestaurant from "./useRestaurantMenu";
 import { MenuShimmer } from "./Shimmer";
 import Nav from "./Navbar";
 import Footer from "./Footer";

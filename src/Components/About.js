@@ -32,11 +32,12 @@ function About() {
               <b>useContext</b>.
             </li>
             <li>
-              Created multiple custom hooks like:
+              Used<b> Swiggy's Public API</b> for fetching Restaurant List and Menu.
+            </li>
+            <li>
+              Created custom hooks like:
               <ul className="list-disc mx-8 list-inside">
-                <li>
-                  <b>useRestaurantList</b> (used to get list of restaurants)
-                </li>
+               
                 <li>
                   <b>useRestaurantMenu</b> (Used to get list of menu items of a
                   selected restaurant)
