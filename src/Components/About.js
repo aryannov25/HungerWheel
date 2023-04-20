@@ -36,6 +36,9 @@ function About() {
               Menu.
             </li>
             <li>
+              Used <b>Firebase</b> to get Realtime Data from Contact page.
+            </li>
+            <li>
               Created custom hooks like:
               <ul className="list-disc mx-8 list-inside">
                 <li>
