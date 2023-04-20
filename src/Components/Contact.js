@@ -14,7 +14,7 @@ function Contact() {
 
   function submitHandler(e) {
     e.preventDefault();
-    e.target.reset();
+    
 
     const setMessage = messageInputRef.current.value;
     const setEmail = emailInputRef.current.value;
