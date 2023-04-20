@@ -18,6 +18,12 @@ function Contact() {
     const setEmail = emailInputRef.current.value;
     const setName = nameInputRef.current.value;
 
+
+
+    const handleClick () => {
+      setName("");
+    };
+
     const Data = {
       name: setName,
       email: setEmail,
@@ -112,6 +118,7 @@ function Contact() {
                   <button
                     type="submit"
                     className="flex mx-auto text-white bg-orange-500 border-0 py-2 px-8 focus:outline-none hover:bg-orange-600 rounded text-lg"
+                    onClick={handleClick()}
                   >
                     Button
                   </button>
