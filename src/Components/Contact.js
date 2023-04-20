@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "./Navbar";
+import Nav from "./Navbar.js";
 import Footer from "./Footer";
 
 function Contact() {

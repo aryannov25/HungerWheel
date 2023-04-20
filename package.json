@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is a Food-Ordering-App",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel index.html && parcel watch index.html",
     "build": "parcel build index.html",
     "test": "jest"
   },
