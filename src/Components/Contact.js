@@ -11,16 +11,17 @@ function Contact() {
   const emailInputRef = useRef();
   const nameInputRef = useRef();
 
-  function submitHandler(e) {
-    e.preventDefault();
 
+    
+
+ function submitHandler(e) {
+    e.preventDefault();
+  
+  
     const setMessage = messageInputRef.current.value;
     const setEmail = emailInputRef.current.value;
     const setName = nameInputRef.current.value;
 
-
-
-  
     const Data = {
       name: setName,
       email: setEmail,
@@ -35,7 +36,9 @@ function Contact() {
         body: JSON.stringify(Data),
       },
       alert("success")
-    );
+    ).then(() => {
+      e.target.reset();
+    });
   }
 
   return (
