@@ -49,10 +49,9 @@ function Contact() {
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
                 Contact Us
               </h1>
-              <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-                Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-                gentrify.
-              </p>
+              <h2 className="sm:text-3xl text-2xl">
+                We'd love to hear from you
+              </h2>
             </div>
             <div className="lg:w-1/2 md:w-2/3 mx-auto">
               <div className="flex flex-wrap -m-2">
@@ -70,7 +69,7 @@ function Contact() {
                       id="name"
                       required
                       name="name"
-                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-orange-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                 </div>
@@ -88,7 +87,7 @@ function Contact() {
                       type="email"
                       id="email"
                       name="email"
-                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-orange-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                 </div>
@@ -105,25 +104,21 @@ function Contact() {
                       ref={messageInputRef}
                       id="message"
                       name="message"
-                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-orange-500 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                     ></textarea>
                   </div>
                 </div>
                 <div className="p-2 w-full">
                   <button
                     type="submit"
-                    className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                    className="flex mx-auto text-white bg-orange-500 border-0 py-2 px-8 focus:outline-none hover:bg-orange-600 rounded text-lg"
                   >
                     Button
                   </button>
                 </div>
                 <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-                  <a className="text-indigo-500">example@email.com</a>
-                  <p className="leading-normal my-5">
-                    49 Smith St.
-                    <br />
-                    Saint Cloud, MN 56301
-                  </p>
+                  <a className="text-indigo-500">aryannov25@gmail.com</a>
+                  
                   <span className="inline-flex">
                     <a className="text-gray-500">
                       <svg
