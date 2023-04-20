@@ -11,19 +11,17 @@ function Contact() {
   const emailInputRef = useRef();
   const nameInputRef = useRef();
 
-
   function submitHandler(e) {
     e.preventDefault();
-    
 
     const setMessage = messageInputRef.current.value;
     const setEmail = emailInputRef.current.value;
     const setName = nameInputRef.current.value;
 
     const Data = {
-      message: setMessage,
-      email: setEmail,
       name: setName,
+      email: setEmail,
+      message: setMessage,
     };
 
     //Post Tweets
@@ -70,6 +68,7 @@ function Contact() {
                       ref={nameInputRef}
                       type="text"
                       id="name"
+                      required
                       name="name"
                       className="w-full bg-gray-100 rounded border border-gray-300 focus:border-indigo-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
@@ -84,6 +83,7 @@ function Contact() {
                       Email
                     </label>
                     <input
+                      required
                       ref={emailInputRef}
                       type="email"
                       id="email"
@@ -101,6 +101,7 @@ function Contact() {
                       Message
                     </label>
                     <textarea
+                      required
                       ref={messageInputRef}
                       id="message"
                       name="message"
@@ -169,7 +170,6 @@ function Contact() {
                         <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
                       </svg>
                     </a>
-                    
                   </span>
                 </div>
               </div>
