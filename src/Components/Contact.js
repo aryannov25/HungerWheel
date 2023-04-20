@@ -11,13 +11,9 @@ function Contact() {
   const emailInputRef = useRef();
   const nameInputRef = useRef();
 
-
-    
-
- function submitHandler(e) {
+  function submitHandler(e) {
     e.preventDefault();
-  
-  
+
     const setMessage = messageInputRef.current.value;
     const setEmail = emailInputRef.current.value;
     const setName = nameInputRef.current.value;
@@ -30,7 +26,7 @@ function Contact() {
 
     //Post Tweets
     fetch(
-      "https://fir-auth-5ce51-default-rtdb.firebaseio.com/hungerwheel.json",
+      "https://hunger-wheel-default-rtdb.firebaseio.com/data.json",
       {
         method: "POST",
         body: JSON.stringify(Data),
@@ -50,13 +46,13 @@ function Contact() {
           className="text-gray-700 body-font relative"
           onSubmit={submitHandler}
         >
-          <div className="container px-5 py-16 mx-auto">
+          <div className="container px-5 py-10 mx-auto">
             <div className="flex flex-col text-center w-full mb-12">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
                 Contact Us
               </h1>
               <h2 className="sm:text-3xl text-2xl">
-                We'd love to hear from you
+              We'd love to hear feedback from you
               </h2>
             </div>
             <div className="lg:w-1/2 md:w-2/3 mx-auto">
@@ -122,7 +118,6 @@ function Contact() {
                     Button
                   </button>
                 </div>
-                
               </div>
             </div>
           </div>
