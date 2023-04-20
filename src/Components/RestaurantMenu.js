@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { IMG_CDN_URL } from "./Constants";
 import useRestaurant from "./useRestaurantMenu";
 import { MenuShimmer } from "./Shimmer";
@@ -174,8 +174,23 @@ const RestaurantMenu = () => {
               )}
             </ul>
           </div>
+          
+         
         </div>
+        
       )}
+      {cartItems?.length > 0 && (
+             <div className="flex justify-between">
+             <span className="px-5 py-2 text-sm font-bold tracking-wide text-white rounded-full focus:outline-none"></span>
+             <Link to="/cart">
+               {" "}
+               <button className="px-5 py-2 text-sm font-bold tracking-wide text-white bg-orange-500 rounded-full">
+                 <i className="fa fa-shopping-cart"></i> Cart -{" "}
+                 {cartItems.length}
+               </button>{" "}
+             </Link>
+           </div>
+          )}
       <Footer />
     </div>
   );
