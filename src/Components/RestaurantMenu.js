@@ -175,12 +175,8 @@ const RestaurantMenu = () => {
             </ul>
           </div>
           
-         
-        </div>
-        
-      )}
-      {cartItems?.length > 0 && (
-             <div className="flex justify-between">
+          {cartItems?.length > 0 && (
+             <div className="flex justify-between fixed bottom-6 right-3">
              <span className="px-5 py-2 text-sm font-bold tracking-wide text-white rounded-full focus:outline-none"></span>
              <Link to="/cart">
                {" "}
@@ -191,6 +187,10 @@ const RestaurantMenu = () => {
              </Link>
            </div>
           )}
+        </div>
+        
+      )}
+      
       <Footer />
     </div>
   );
