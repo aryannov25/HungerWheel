@@ -43,6 +43,9 @@ function Restaurant() {
     }
   };
 
+  function scrollWin() {
+    window.scrollTo(0, 0);
+  }
   if (!allRestaurants) return null;
 
   return (
@@ -79,6 +82,7 @@ function Restaurant() {
           {filteredRestaurants.map((restaurant) => {
             return (
               <Link
+                onclick="scrollWin()"
                 to={"/restaurant/" + restaurant.data.id}
                 key={restaurant.data.id}
               >
