@@ -17,6 +17,19 @@ function Restaurant() {
     getRestaurants();
   }, []);
 
+  //Res Details by diff url
+  // const fetchapi = async () => {
+  //   const data = await fetch(
+  //     "https://www.swiggy.com/mapi/homepage/getCards?lat=18.4694714&lng=73.8290409"
+  //   );
+  //   const json = await data.json();
+  //   console.log(json.data.success.cards[5].gridWidget.gridElements.infoWithStyle.restaurants);
+  // };
+
+  // useEffect(() => {
+  //   fetchapi();
+  // }, []);
+
   async function getRestaurants() {
     const data = await fetch(
       "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5270362&lng=77.13593279999999&page_type=DESKTOP_WEB_LISTING"
