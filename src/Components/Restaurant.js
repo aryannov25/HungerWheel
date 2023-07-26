@@ -37,8 +37,9 @@ function Restaurant() {
     );
 
     const json = await data.json();
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    console.log(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setAllRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
   const searchData = (searchText, restaurants) => {
@@ -96,11 +97,11 @@ function Restaurant() {
           {filteredRestaurants.map((restaurant) => {
             return (
               <Link
-                onclick="scrollWin()"
-                to={"/restaurant/" + restaurant.data.id}
-                key={restaurant.data.id}
+                onClick="scrollWin()"
+                to={"/restaurant/" + restaurant.info.id}
+                key={restaurant.info.id}
               >
-                <RestaurantCard {...restaurant.data} />
+                <RestaurantCard {...restaurant.info} />
               </Link>
             );
           })}
