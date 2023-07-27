@@ -7,7 +7,6 @@ import Nav from "./Navbar";
 import Footer from "./Footer";
 
 function Restaurant() {
-  const [resData, setresData] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
