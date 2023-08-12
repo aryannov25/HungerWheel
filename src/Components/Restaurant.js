@@ -36,13 +36,37 @@ function Restaurant() {
     );
 
     const json = await data.json();
-    console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setAllRestaurants(
+    console.log(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFilteredRestaurants(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+
+    async function checkJsonData(jsonData) {
+      for (let i = 0; i < jsonData?.data?.cards.length; i++) {
+        // initialize checkData for Swiggy Restaurant data
+        let checkData =
+          json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle
+            ?.restaurants;
+
+        // if checkData is not undefined then return it
+        if (checkData !== undefined) {
+          return checkData;
+        }
+      }
+    }
+
+    // call the checkJsonData() function which return Swiggy Restaurant data
+    const resData = await checkJsonData(json);
+
+    // update the state variable restaurants with Swiggy API data
+    setAllRestaurants(resData);
+    setFilteredRestaurants(resData);
+
+    // setAllRestaurants(
+    //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
+    // setFilteredRestaurants(
+    //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
   }
 
   const searchData = (searchText, restaurants) => {
