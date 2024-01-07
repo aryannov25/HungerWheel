@@ -36,7 +36,7 @@ function Restaurant() {
     );
 
     const json = await data.json();
-    console.log(json?.data?.cards[2]);
+    // console.log(json?.data?.cards[2]);
 
     async function checkJsonData(jsonData) {
       for (let i = 0; i < jsonData?.data?.cards.length; i++) {
