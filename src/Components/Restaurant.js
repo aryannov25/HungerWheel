@@ -28,11 +28,14 @@ function Restaurant() {
   //   fetchapi();
   // }, []);
 
-  console.log("---------");
+  // console.log("---------");
   async function getRestaurants() {
     const data = await fetch(
-      "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D28.5124389%26lng%3D77.1370115%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING"
-      //https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&page_type=DESKTOP_WEB_LISTING
+      "https://corsproxy.org/?" +
+        encodeURIComponent(
+          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        )
+      //https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
     );
 
     const json = await data.json();
