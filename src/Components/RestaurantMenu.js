@@ -103,7 +103,10 @@ const RestaurantMenu = () => {
                     <h3 className="font-semibold">{item.name}</h3>
                     <p className="text-sm text-slate-500">{item.description}</p>
                     <span className="text-lg font-bold">
-                      ₹{item.price / 100}
+                      ₹
+                      {typeof item.price !== "undefined"
+                        ? item.price / 100
+                        : item.defaultPrice / 100}
                     </span>
                   </div>
                   <div className="flex items-center justify-center space-x-3">
