@@ -1,131 +1,119 @@
-import { React, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Nav from "./Navbar.js";
 import Footer from "./Footer";
-import { useState, useEffect } from "react";
 
 function Contact() {
-  const [message, setMessage] = useState({});
-  const [email, setEmail] = useState({});
-  const [name, setName] = useState({});
-  const messageInputRef = useRef();
-  const emailInputRef = useRef();
-  const nameInputRef = useRef();
+  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
-  function submitHandler(e) {
-    e.preventDefault();
+  const submitHandler = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
 
-    const setMessage = messageInputRef.current.value;
-    const setEmail = emailInputRef.current.value;
-    const setName = nameInputRef.current.value;
-
+    // Prepare data object for submission
     const Data = {
-      name: setName,
-      email: setEmail,
-      message: setMessage,
+      name: name,
+      email: email,
+      message: message,
     };
 
-    //Post Tweets
-    fetch(
-      "https://hunger-wheel-default-rtdb.firebaseio.com/data.json",
-      {
-        method: "POST",
-        body: JSON.stringify(Data),
+    // Perform the fetch API call to submit the form data
+    fetch("https://hunger-wheel-default-rtdb.firebaseio.com/data.json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      alert("success")
-    ).then(() => {
-      e.target.reset();
-    });
-  }
+      body: JSON.stringify(Data),
+    })
+      .then(() => {
+        alert("Success");
+        // Reset form fields after successful submission
+        setMessage("");
+        setEmail("");
+        setName("");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+      });
+  };
 
   return (
     <>
-      <Nav />
-
-      <div>
-        <form
-          className="text-gray-700 body-font relative"
-          onSubmit={submitHandler}
-        >
-          <div className="container px-5 py-10 mx-auto">
-            <div className="flex flex-col text-center w-full mb-12">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+      <div className="flex flex-col justify-between h-screen">
+        <Nav />
+        <div className="flex justify-center items-center px-4 py-2 ">
+          <form
+            className="w-full max-w-lg space-y-4 bg-white rounded-lg shadow-md p-4"
+            onSubmit={submitHandler}
+            style={{ flex: 1 }} // This will allow the form to be flexible
+          >
+            <div className="text-center">
+              <h1 className="text-2xl font-semibold text-gray-900 sm:text-3xl">
                 Contact Us
               </h1>
-              <h2 className="sm:text-3xl text-2xl">
+              <p className="mt-2 text-gray-600">
                 We'd love to hear feedback from you
-              </h2>
+              </p>
             </div>
-            <div className="lg:w-1/2 md:w-2/3 mx-auto">
-              <div className="flex flex-wrap -m-2">
-                <div className="p-2 w-1/2">
-                  <div className="relative">
-                    <label
-                      for="name"
-                      className="leading-7 text-sm text-gray-600"
-                    >
-                      Name
-                    </label>
-                    <input
-                      ref={nameInputRef}
-                      type="text"
-                      id="name"
-                      required
-                      name="name"
-                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-orange-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                  </div>
-                </div>
-                <div className="p-2 w-1/2">
-                  <div className="relative">
-                    <label
-                      for="email"
-                      className="leading-7 text-sm text-gray-600"
-                    >
-                      Email
-                    </label>
-                    <input
-                      required
-                      ref={emailInputRef}
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-orange-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                  </div>
-                </div>
-                <div className="p-2 w-full">
-                  <div className="relative">
-                    <label
-                      for="message"
-                      className="leading-7 text-sm text-gray-600"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      required
-                      ref={messageInputRef}
-                      id="message"
-                      name="message"
-                      className="w-full bg-gray-100 rounded border border-gray-300 focus:border-orange-500 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                    ></textarea>
-                  </div>
-                </div>
-                <div className="p-2 w-full">
-                  <button
-                    type="submit"
-                    className="flex mx-auto text-white bg-orange-500 border-0 py-2 px-6 focus:outline-none hover:bg-orange-600 rounded-lg text-lg"
-                  >
-                    Submit
-                  </button>
-                </div>
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="name" className="text-sm text-gray-700">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  required
+                  name="name"
+                  value={name} // Controlled component
+                  onChange={(e) => setName(e.target.value)} // Update state on change
+                  className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="text-sm text-gray-700">
+                  Email
+                </label>
+                <input
+                  required
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email} // Controlled component
+                  onChange={(e) => setEmail(e.target.value)} // Update state on change
+                  className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="text-sm text-gray-700">
+                  Message
+                </label>
+                <textarea
+                  required
+                  id="message"
+                  name="message"
+                  rows="4"
+                  value={message} // Controlled component
+                  onChange={(e) => setMessage(e.target.value)} // Update state on change
+                  className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                ></textarea>
+              </div>
+              <div className="text-center">
+                <button
+                  type="submit"
+                  className="px-6 py-2 text-lg text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                >
+                  Submit
+                </button>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
+        <Footer />
       </div>
-
-      <Footer />
     </>
   );
 }
+
 export default Contact;

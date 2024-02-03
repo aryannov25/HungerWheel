@@ -4,13 +4,20 @@ import Footer from "./Footer";
 
 function About() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen text-left">
       <Nav />
-      <div className="grid p-2 m-2">
-        <span className="mt-2">
-          <b>App description:</b> This is a food ordering app created as single
-          page app using React. <br />
-          Below are few details and features :-
+      <main className="flex-grow p-4 md:p-8">
+        <section className="max-w-4xl mx-auto">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            App Description:
+          </h1>
+          <p className="mb-4 text-gray-700">
+            This is a food ordering app created as a single-page app using
+            React.
+          </p>
+          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            Features and Details:
+          </h2>
           <ul className="list-disc mx-8 list-inside">
             <li>
               I used Parcel.js as bundler.{" "}
@@ -85,8 +92,8 @@ function About() {
               </a>
             </li>
           </ul>
-        </span>
-      </div>
+        </section>
+      </main>
       <Footer />
     </div>
   );

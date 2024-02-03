@@ -11,17 +11,13 @@ import ScrollToTop from "./scrollToTop";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-
   const restaurant = useRestaurant(resId);
-
-  const restaurantInfo = restaurant?.cards[0]?.card?.card?.info;
-
-  // console.log(restaurant)
-
   let result = [],
     uniqueFoodItems = [];
-  const restaurantMenuInfo = restaurant?.cards; //[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards//[1]?.card.card.itemCards;
-
+  const restaurantMenuInfo = restaurant?.cards;
+  const dispatch = useDispatch();
+  const cartItems = useSelector((store) => store.cart.items);
+  const restaurantInfo = restaurant?.cards[0]?.card?.card?.info;
   // const menu = restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(x => x.card.card.title=="Recommended")
   //   console.log(menu)
 
@@ -54,8 +50,6 @@ const RestaurantMenu = () => {
     });
   }
 
-  const dispatch = useDispatch();
-  const cartItems = useSelector((store) => store.cart.items);
   const addFoodItem = (item) => {
     dispatch(addItem(item));
   };
@@ -64,7 +58,7 @@ const RestaurantMenu = () => {
     dispatch(removeItem());
   };
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Nav />
       {!restaurant ? (
         <>
@@ -72,128 +66,82 @@ const RestaurantMenu = () => {
           <ScrollToTop />
         </>
       ) : (
-        <div className="grid justify-center m-auto max-w-[70%] p-4">
-          <div className="grid lg:grid-cols-2 gap-12 border-dotted border-b-2 p-2 sm:grid-cols-none ">
-            <div className="text-center">
-              <h1 className="font-bold p-2">
-                {restaurant?.cards[0]?.card?.card?.info?.name}
-              </h1>
-              <ul>
-                <li className="p-2 font-small text-sm text-slate-500 font-sans">
-                  {restaurant?.cards[0]?.card?.card?.info?.cuisines.join(", ")}
+        <div className="container mx-auto max-w-screen-lg p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-dotted pb-4">
+            <div className="space-y-2">
+              <h1 className="text-2xl font-bold">{restaurantInfo?.name}</h1>
+              <ul className="space-y-1 text-slate-500">
+                <li>{restaurantInfo?.cuisines.join(", ")}</li>
+                <li>
+                  {restaurantInfo?.areaName},{" "}
+                  {restaurantInfo?.sla?.lastMileTravelString}
                 </li>
-                <li className="p-2 font-small text-sm text-slate-500 font-sans">
-                  {restaurant?.cards[0]?.card?.card?.info?.areaName},{" "}
-                  {
-                    restaurant?.cards[0]?.card?.card?.info?.sla
-                      ?.lastMileTravelString
-                  }
-                </li>
-                <li className="p-2 font-small text-sm  font-sans text-green-700">
-                  {restaurant?.cards[0]?.card?.card?.info?.avgRating} &#9733; ||
-                  <span className="p-2  flexfont-bold  font-small text-sm text-slate-500 font-sans">
-                    {restaurant?.cards[0]?.card?.card?.info?.totalRatingsString}
-                  </span>
+                <li className="text-green-700">
+                  {restaurantInfo?.avgRating} &#9733; ||{" "}
+                  {restaurantInfo?.totalRatingsString}
                 </li>
               </ul>
             </div>
-
-            <div className="restaurant-img rounded-lg md:w-[118] sm:w-[118] sm:h-full  sm:rounded-md ">
+            <div className="w-full">
               <img
-                src={
-                  IMG_CDN_URL +
-                  restaurant?.cards[0]?.card?.card?.info?.cloudinaryImageId
-                }
-                alt={restaurant?.cards[0]?.card?.card?.info?.name}
+                className="rounded-lg object-cover w-full h-60"
+                src={IMG_CDN_URL + restaurantInfo?.cloudinaryImageId}
+                alt={restaurantInfo?.name}
               />
             </div>
           </div>
 
-          <div className="">
-            <h1 className="font-bold border-b pt-2 pb-2 m-auto">Menu</h1>
-            <ul>
-              {uniqueFoodItems.length > 0 ? (
-                Object.values(uniqueFoodItems).map((item, index) => {
-                  if (index < 25) {
-                    return (
-                      <li
-                        className="grid lg:grid-cols-8 justify-center p-2 gap-2 m-2 border-b sm:grid-cols-4"
-                        key={index}
-                      >
-                        <>
-                          <div className="lg:col-span-5">
-                            <span className="font-bold">{item?.name}</span>
-                            <br />
-                            <span>
-                              ₹ {(item?.price || item?.defaultPrice) / 100}
-                            </span>
-                            <br />
-                            <span className="font-small mt-2 text-sm text-slate-500 font-sans hidden md:block">
-                              {item?.description}
-                            </span>
-                          </div>
-                          <div className="relative justify-self-end col-span-3">
-                            {item?.imageId && (
-                              <img
-                                className="w-[118] rounded-md h-[96] object-cover"
-                                src={IMG_CDN_URL + item?.imageId}
-                                alt="item"
-                              />
-                            )}
-                            <div className="text-center w-[118]  mt-1 border-2 rounded-md">
-                              <button
-                                className="text-gray-800 font-extrabold px-3"
-                                onClick={() => {
-                                  removeFoodItem();
-                                }}
-                              >
-                                -
-                              </button>
-                              <button
-                                className="text-green-800 font-bold px-2 m-1 text-sm border-x-2 align-middle"
-                                disabled={true}
-                              >
-                                {
-                                  cartItems.filter((f) => f.id === item.id)
-                                    .length
-                                }
-                              </button>
-                              <button
-                                className="text-green-800 font-extrabold px-3"
-                                onClick={() => {
-                                  addFoodItem(item);
-                                }}
-                              >
-                                +
-                              </button>
-                            </div>
-                          </div>
-                        </>
-                      </li>
-                    );
-                  }
-                })
-              ) : (
-                <span>No restaurant menu items.</span>
-              )}
+          <div className="mt-6">
+            <h2 className="text-2xl font-bold mb-4">Menu</h2>
+            <ul className="space-y-4">
+              {uniqueFoodItems.map((item, index) => (
+                <li
+                  className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center"
+                  key={item.id}
+                >
+                  <div className="md:col-span-3">
+                    <h3 className="font-semibold">{item.name}</h3>
+                    <p className="text-sm text-slate-500">{item.description}</p>
+                    <span className="text-lg font-bold">
+                      ₹{item.price / 100}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-3">
+                    <button
+                      aria-label="Decrease quantity"
+                      onClick={() => removeFoodItem(item.id)}
+                      className="text-gray-800 bg-red-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-lg px-3 py-1 transition duration-150 ease-in-out"
+                    >
+                      &ndash;
+                    </button>
+                    <span className="text-lg font-semibold">
+                      {cartItems.filter((f) => f.id === item.id).length}
+                    </span>
+                    <button
+                      aria-label="Increase quantity"
+                      onClick={() => addFoodItem(item)}
+                      className="text-gray-800 bg-green-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-lg px-3 py-1 transition duration-150 ease-in-out"
+                    >
+                      +
+                    </button>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {cartItems?.length > 0 && (
-            <div className="flex justify-between fixed bottom-9 right-3 mb-12 mr-10">
-              <span className="px-5 py-2 text-sm font-bold tracking-wide text-white rounded-full focus:outline-none"></span>
+          {cartItems.length > 0 && (
+            <div className="fixed bottom-4 right-4 mb-12 mr-10">
               <Link to="/cart">
-                {" "}
-                <button className="px-5 py-2 text-sm font-bold tracking-wide text-white bg-orange-500 rounded-full">
+                <button className="px-5 py-2 text-sm font-bold tracking-wide text-white bg-orange-500 rounded-full shadow-lg hover:bg-orange-600">
                   <i className="fa fa-shopping-cart"></i> Cart -{" "}
                   {cartItems.length}
-                </button>{" "}
+                </button>
               </Link>
             </div>
           )}
         </div>
       )}
-
       <Footer />
     </div>
   );

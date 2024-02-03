@@ -254,11 +254,11 @@
   background-size: 1000px 100%;
 }
 @keyframes shimmer {
-  from {
-    background-position: -1000px 0;
+  0% {
+    background-position: -200% 0;
   }
-  to {
-    background-position: 1000px 0;
+  100% {
+    background-position: 200% 0;
   }
 }
 /*Animation to Shimmer Component Card and Menu card End*/
