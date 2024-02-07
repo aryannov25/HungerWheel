@@ -17,7 +17,21 @@ const RestaurantMenu = () => {
   const restaurantMenuInfo = restaurant?.cards;
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
-  const restaurantInfo = restaurant?.cards[0]?.card?.card?.info;
+  const getRestaurantInfo = (restaurant) => {
+    // Check if the expected structure for mobile exists
+    if (restaurant?.cards[2]?.card?.card?.info) {
+      return restaurant.cards[2].card.card.info;
+    }
+    // Fallback to the web structure
+    else if (restaurant?.cards[0]?.card?.card?.info) {
+      return restaurant.cards[0].card.card.info;
+    }
+    // Return null or a default object if neither path works
+    return null;
+  };
+
+  const restaurantInfo = getRestaurantInfo(restaurant);
+
   // const menu = restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(x => x.card.card.title=="Recommended")
   //   console.log(menu)
 
