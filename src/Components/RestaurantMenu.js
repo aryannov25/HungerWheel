@@ -85,6 +85,12 @@ const RestaurantMenu = () => {
             <div className="w-full">
               <img
                 className="rounded-lg object-cover w-full h-60"
+                srcSet={`${
+                  IMG_CDN_URL + restaurantInfo?.cloudinaryImageId
+                } 300w,
+           ${IMG_CDN_URL + restaurantInfo?.cloudinaryImageId} 768w,
+           ${IMG_CDN_URL + restaurantInfo?.cloudinaryImageId} 1280w`}
+                sizes="(max-width: 300px) 100vw, (max-width: 768px) 100vw, 1280px"
                 src={IMG_CDN_URL + restaurantInfo?.cloudinaryImageId}
                 alt={restaurantInfo?.name}
               />
