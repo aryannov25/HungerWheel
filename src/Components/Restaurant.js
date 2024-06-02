@@ -56,8 +56,8 @@ function Restaurant() {
       apiUrl += `?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
     }
     const data = await fetch(
-      "https://thingproxy.freeboard.io/fetch/" +
-        // "https://cors.bridged.cc/" +
+      // "https://thingproxy.freeboard.io/fetch/" +
+        "https://cors.bridged.cc/" +
         apiUrl
 
       //https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
