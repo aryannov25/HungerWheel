@@ -10,10 +10,28 @@ function Restaurant() {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [userLocation, setUserLocation] = useState({}); // added state for user location
 
   useEffect(() => {
+    getUserLocation();
     getRestaurants();
   }, []);
+
+  async function getUserLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+        },
+        (error) => {
+          console.error("Error getting user location:", error);
+        }
+      );
+    } else {
+      console.log("Geolocation not supported by this browser.");
+    }
+  }
 
   //Res Details by diff url
   // const fetchapi = async () => {
@@ -28,12 +46,19 @@ function Restaurant() {
   //   fetchapi();
   // }, []);
 
-  // console.log("---------");
+  console.log("---------", userLocation);
   async function getRestaurants() {
+    let apiUrl =
+      "https://cors.bridged.cc/" +
+      "https://www.swiggy.com/dapi/restaurants/list/v5";
+    if (userLocation.lat && userLocation.lng) {
+      apiUrl += `?lat=${userLocation.lat}&lng=${userLocation.lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+    } else {
+      apiUrl += `?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+    }
     const data = await fetch(
       // "https://thingproxy.freeboard.io/fetch/" +
-      "https://cors.bridged.cc/" +
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      apiUrl
 
       //https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
     );
