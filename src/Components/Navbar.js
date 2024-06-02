@@ -4,39 +4,40 @@ import { useSelector } from "react-redux";
 
 function Navbar() {
   const cartItems = useSelector((store) => store.cart.items);
-  // console.log(cartItems);
+
   return (
-    <div>
-      <div className="flex justify-between bg-orange-200">
-        <Link to="/">
-          {" "}
-          <img className="h-16 w-full m-2 mx-3 navlogo" src={Logo} alt="logo" />
+    <nav className="bg-orange-200 py-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link to="/" className="flex items-center">
+          <img src={Logo} alt="logo" className="h-16 w-full m-2 mx-3 navlogo" />
         </Link>
-        <div className="mt-6 mr-4 items-center">
-          <ul className="flex space-x-4 p-2">
-            <Link to="/">
-              <li>Home</li>
+        <ul className="flex space-x-4 p-2">
+          <li>
+            <Link to="/" className="text-black hover:text-gray-900">
+              Home
             </Link>
-            <Link to="/about">
-              <li>About</li>
+          </li>
+          <li>
+            <Link to="/about" className="text-black hover:text-gray-900">
+              About
             </Link>
-            <Link to="/contact">
-              <li>Contact Us</li>
+          </li>
+          <li>
+            <Link to="/contact" className="text-black hover:text-gray-900">
+              Contact Us
             </Link>
-          </ul>
-        </div>
-        <div className="mt-6 mr-4 items-center">
-          <ul className="flex space-x-4 p-2">
-            <Link to="/cart">
-              <li>
-                <i className="fa fa-shopping-cart"></i> Cart -{" "}
-                {cartItems.length}
-              </li>
+          </li>
+        </ul>
+        <ul className="flex space-x-4 p-2">
+          <li>
+            <Link to="/cart" className="text-black hover:text-gray-900">
+              <i className="fa fa-shopping-cart mr-2" />
+              Cart - {cartItems.length}
             </Link>
-          </ul>
-        </div>
+          </li>
+        </ul>
       </div>
-    </div>
+    </nav>
   );
 }
 

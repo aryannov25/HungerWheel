@@ -31,7 +31,8 @@ function Restaurant() {
   // console.log("---------");
   async function getRestaurants() {
     const data = await fetch(
-      "https://thingproxy.freeboard.io/fetch/" +
+      // "https://thingproxy.freeboard.io/fetch/" +
+      "https://cors.bridged.cc/" +
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
 
       //https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
@@ -97,7 +98,7 @@ function Restaurant() {
         <input
           data-testid="search-input"
           type="text"
-          className="focus:bg-blue-100 p-2 w-1/5 m-2"
+          className="focus:bg-blue-100 p-2 w-1/5 m-2 rounded-md outline-none"
           placeholder="Search Restaurants"
           value={searchText}
           onChange={(e) => {
@@ -107,7 +108,7 @@ function Restaurant() {
         />
         <button
           data-testid="search-btn"
-          className="p-2 m-2 bg-orange-200 hover:bg-gray-100 hover:text-black text-white rounded-md"
+          className="p-2 m-2 bg-orange-200 hover:bg-orange-400 hover:text-black text-white rounded-md"
           onClick={() => {
             // user click on button searchData function is called
             searchData(searchText, allRestaurants);

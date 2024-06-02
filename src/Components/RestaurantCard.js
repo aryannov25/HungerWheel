@@ -18,7 +18,7 @@ const RestaurantCard = ({
   };
 
   return (
-    <div className="card w-64 h-auto bg-white rounded-lg overflow-hidden shadow-lg m-4 transition duration-500 ease-in-out hover:scale-105 hover:shadow-xl">
+    <div className="card w-72 h-auto bg-white rounded-lg overflow-hidden shadow-lg m-4 transition duration-500 ease-in-out hover:scale-105 hover:shadow-xl">
       <img
         src={IMG_CDN_URL + cloudinaryImageId}
         alt={name}
@@ -36,7 +36,7 @@ const RestaurantCard = ({
             &#9733; {avgRating}
           </span>
           <span className="text-gray-600">• {sla.slaString}</span>
-          <span className="text-gray-600">• ₹{costForTwo}</span>
+          <span className="text-gray-600">• {costForTwo}</span>
         </div>
       </div>
     </div>

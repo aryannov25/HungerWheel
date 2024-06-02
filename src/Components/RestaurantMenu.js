@@ -133,7 +133,7 @@ const RestaurantMenu = () => {
                     <button
                       aria-label="Decrease quantity"
                       onClick={() => removeFoodItem(item.id)}
-                      className="text-gray-800 bg-red-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-lg px-3 py-1 transition duration-150 ease-in-out"
+                      className="text-gray-800 bg-red-200 hover:bg-gray-300  font-medium rounded-md text-lg px-3 py-1 transition duration-150 ease-in-out"
                     >
                       &ndash;
                     </button>
@@ -143,7 +143,7 @@ const RestaurantMenu = () => {
                     <button
                       aria-label="Increase quantity"
                       onClick={() => addFoodItem(item)}
-                      className="text-gray-800 bg-green-200 hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-lg px-3 py-1 transition duration-150 ease-in-out"
+                      className="text-gray-800 bg-green-200 hover:bg-gray-300  font-medium rounded-md text-lg px-3 py-1 transition duration-150 ease-in-out"
                     >
                       +
                     </button>
