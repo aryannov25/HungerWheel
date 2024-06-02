@@ -49,17 +49,16 @@ function Restaurant() {
 
   console.log("---------", userLocation);
   async function getRestaurants() {
-    let apiUrl =
-      "https://cors.bridged.cc/" +
-      "https://www.swiggy.com/dapi/restaurants/list/v5";
+    let apiUrl = "https://www.swiggy.com/dapi/restaurants/list/v5";
     if (userLocation.lat && userLocation.lng) {
       apiUrl += `?lat=${userLocation.lat}&lng=${userLocation.lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
     } else {
       apiUrl += `?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
     }
     const data = await fetch(
-      // "https://thingproxy.freeboard.io/fetch/" +
-      apiUrl
+      "https://thingproxy.freeboard.io/fetch/" +
+        // "https://cors.bridged.cc/" +
+        apiUrl
 
       //https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
     );
