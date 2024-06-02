@@ -32,9 +32,8 @@ function Restaurant() {
   async function getRestaurants() {
     const data = await fetch(
       "https://thingproxy.freeboard.io/fetch/" +
-        encodeURIComponent(
-          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-        )
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+
       //https://corsproxy.org/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5124389&lng=77.1370115&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
     );
 
