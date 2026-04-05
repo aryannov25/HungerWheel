@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "This is a Food-Ordering-App",
   "scripts": {
-    "start": "parcel index.html && parcel watch index.html",
+    "start": "concurrently \"node server.js\" \"parcel index.html\"",
+    "server": "node server.js",
     "build": "parcel build index.html",
     "test": "jest"
   },
@@ -17,6 +18,8 @@
   "devDependencies": {
     "@babel/core": "^7.20.7",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "concurrently": "^9.2.1",
+    "http-proxy-middleware": "^3.0.5",
     "parcel": "^2.8.2",
     "postcss": "^8.4.21",
     "process": "^0.11.10",
@@ -24,6 +27,9 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.0",
+    "express": "^5.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",

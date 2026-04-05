@@ -1,165 +1,128 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import Nav from "./Navbar";
 import { useSelector, useDispatch } from "react-redux";
-import { IMG_CDN_URL } from "./Constants";
 import { clearCart } from "./cartSlice";
 import Modal from "./Modal";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const cartItems = useSelector((store) => store.cart.items);
-  // console.log(cartItems);
-
-  const dispatch = useDispatch();
+  const dispatch  = useDispatch();
   const [openModal, setOpenModal] = useState(false);
-  const [openInfoModal, setOpenInfoModal] = useState(false);
-  // const [cart, setCart] = useState([]);
 
-  // useEffect(() => {
-  //   setCart(JSON.parse(localStorage.getItem("foodItems")));
-  // }, []);
+  // Group items by id
+  const grouped = cartItems.reduce((acc, item) => {
+    acc[item.id] = acc[item.id] ? { ...acc[item.id], qty: acc[item.id].qty + 1 } : { ...item, qty: 1 };
+    return acc;
+  }, {});
+  const uniqueItems = Object.values(grouped);
 
-  // console.log("as", cart);
-
-  let uniqueFoodItems = [];
-  if (cartItems.length > 0) {
-    let uniqueItems = [...new Set(cartItems)];
-    uniqueFoodItems = uniqueItems.map((value) => [
-      value,
-      cartItems.filter((str) => str === value).length,
-    ]);
-  }
-  const total =
-    cartItems.length > 0
-      ? cartItems
-          .map((x) => (x.price > 0 ? x.price / 100 : x.defaultPrice / 100))
-          .reduce((sum, a) => sum + a, 0)
-      : 0;
-
-  const final = total + 49 + 29;
-
-  const handleClearCart = () => {
-    dispatch(clearCart());
-    localStorage.clear();
-  };
-  const placeOrder = () => {
-    dispatch(clearCart());
-    setOpenModal(true);
-  };
+  const subtotal = cartItems.reduce((sum, x) => sum + (x.price || x.defaultPrice || 0) / 100, 0);
+  const taxes    = 49;
+  const delivery = 29;
+  const total    = subtotal + taxes + delivery;
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Nav />
-      {cartItems?.length > 0 && (
-        <div className="mt-4 text-center text-lg font-bold">
-          <h3 className="fw-bolder">Cart Items- {cartItems.length}</h3>
-        </div>
-      )}
 
-      {cartItems?.length == 0 && (
-        <div className="mt-4 text-center">
-          <h1 className="font-bold text-2xl">Cart Empty</h1>
-          <h2 className="mt-2 font-semibold text-2xl">
-            You can go to{" "}
-            <a href="/" className="font-bold">
-              Home Page
-            </a>{" "}
-            to view more restaurants.
-          </h2>
-        </div>
-      )}
-      <div className="restaurant-menu-content">
-        <div className="menu-items-container">
-          <div className="menu-items-list">
-            {Object.values(uniqueFoodItems).map((item, index) => {
-              return (
-                <div>
-                  <li type="none" key={index}>
-                    <div className="menu-item">
-                      <div className="menu-item-details">
-                        <h3 className="item-title">
-                          {item[0].name} - [{item[1]}]
-                        </h3>
-                        <p className="item-cost">
-                          ₹ {(item[0]?.price || item[0]?.defaultPrice) / 100}
-                        </p>
-                        <p className="item-desc hidden md:block ">
-                          {item[0]?.description}
-                        </p>
-                      </div>
-                      <div className="menu-img-wrapper">
-                        {item[0]?.imageId && (
-                          <img
-                            className="w-[118] rounded-md h-[96] object-cover"
-                            src={IMG_CDN_URL + item[0]?.imageId}
-                            alt="item"
-                          />
-                        )}
-                      </div>
-                    </div>
-                  </li>
-                </div>
-              );
-            })}
+      {cartItems.length === 0 ? (
+        /* Empty state */
+        <div className="flex-grow flex flex-col items-center justify-center text-center px-6 py-20">
+          <div className="w-24 h-24 bg-orange-50 rounded-full flex items-center justify-center text-4xl mb-6">
+            🛒
           </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h1>
+          <p className="text-gray-400 text-sm mb-8 max-w-xs">
+            Looks like you haven't added anything yet. Explore restaurants and add some food!
+          </p>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold text-sm transition-colors shadow-sm"
+          >
+            <i className="fa-solid fa-utensils" />
+            Browse Restaurants
+          </Link>
         </div>
-      </div>
+      ) : (
+        <div className="flex-grow max-w-2xl mx-auto w-full px-4 py-8 space-y-5">
 
-      {cartItems.length > 0 ? (
-        <>
-          {" "}
-          <div className="restaurant-menu-content">
-            <div className="price-items-container">
-              <div className=" ">
-                <h1 className="text-center font-semibold ">Price Breakup</h1>
-                <hr />
-                <div className="">
-                  <div className="items-start text-start mt-2 mb-2 ">
-                    <div className="">
-                      <label>Item Total </label>
-                      {`₹${total}`}
-                    </div>
-                    <label>Taxes ₹49</label>
-                    <div>
-                      <label>Delivery Charges ₹29</label>
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="font-bold mt-2">Total Amount :- ₹{final}</div>
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-extrabold text-gray-900">Your Cart</h1>
+            <span className="bg-orange-100 text-orange-600 text-xs font-bold px-3 py-1 rounded-full">
+              {cartItems.length} item{cartItems.length !== 1 ? "s" : ""}
+            </span>
+          </div>
+
+          {/* Items */}
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden divide-y divide-gray-50">
+            {uniqueItems.map((item) => (
+              <div key={item.id} className="flex items-center gap-4 p-4">
+                {item.imageUrl && (
+                  <img
+                    className="w-16 h-16 rounded-xl object-cover shrink-0 bg-gray-100"
+                    src={item.imageUrl}
+                    alt={item.name}
+                  />
+                )}
+                <div className="flex-grow min-w-0">
+                  <h3 className="font-semibold text-gray-900 text-sm truncate">{item.name}</h3>
+                  <p className="text-gray-400 text-xs mt-0.5 line-clamp-1">{item.description}</p>
+                  <span className="text-orange-500 font-bold text-sm mt-1 block">
+                    ₹{(item.price || item.defaultPrice) / 100}
+                  </span>
+                </div>
+                <div className="shrink-0 bg-orange-100 text-orange-600 rounded-xl px-3 py-1 text-sm font-bold">
+                  ×{item.qty}
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* Price breakdown */}
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-3">
+            <h2 className="font-bold text-gray-900 text-sm pb-2 border-b border-gray-50">
+              Price Breakup
+            </h2>
+            <div className="flex justify-between text-sm text-gray-500">
+              <span>Item Total</span><span>₹{subtotal.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-500">
+              <span>Taxes & Charges</span><span>₹{taxes}</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-500">
+              <span>Delivery Fee</span><span>₹{delivery}</span>
+            </div>
+            <div className="flex justify-between font-bold text-gray-900 text-base pt-3 border-t border-gray-100">
+              <span>Total</span>
+              <span className="text-orange-500">₹{total.toFixed(2)}</span>
             </div>
           </div>
-        </>
-      ) : (
-        [null]
-      )}
 
-      {cartItems?.length > 0 && (
-        <div className="grid">
-          <button
-            className="p-2 mt-2 col-span-1 justify-self-center hover:bg-green-100 bg-green-400 rounded-md"
-            onClick={() => {
-              handleClearCart();
-            }}
-            disabled={!cartItems.length}
-          >
-            Clear Cart
-          </button>
-          <button
-            className="col-span-1 justify-self-center border rounded-lg m-2 bg-orange-200 p-2"
-            onClick={() => {
-              placeOrder();
-            }}
-            disabled={!cartItems.length}
-          >
-            Place Order
-          </button>
+          {/* Actions */}
+          <div className="flex gap-3 pb-6">
+            <button
+              className="flex-1 py-3 bg-white hover:bg-gray-50 text-gray-600 border border-gray-200 rounded-xl font-semibold text-sm transition-colors"
+              onClick={() => { dispatch(clearCart()); localStorage.clear(); }}
+            >
+              Clear Cart
+            </button>
+            <button
+              className="flex-1 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-semibold text-sm transition-colors shadow-sm hover:shadow-md"
+              onClick={() => { dispatch(clearCart()); setOpenModal(true); }}
+            >
+              Place Order
+            </button>
+          </div>
+
         </div>
       )}
+
       {openModal && <Modal closeModal={setOpenModal} />}
       <Footer />
-    </>
+    </div>
   );
 }
 

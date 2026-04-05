@@ -1,172 +1,195 @@
-import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { IMG_CDN_URL } from "./Constants";
-import useRestaurant from "./useRestaurantMenu";
+import { PLACES_PHOTO_URL, formatTypes, formatPrice } from "./Constants";
+import { getMenuForPlace } from "./menuData";
+import useRestaurantMenu from "./useRestaurantMenu";
 import { MenuShimmer } from "./Shimmer";
 import Nav from "./Navbar";
 import Footer from "./Footer";
+import ScrollToTop from "./scrollToTop";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "./cartSlice";
-import ScrollToTop from "./scrollToTop";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
-  const restaurant = useRestaurant(resId);
-  let result = [],
-    uniqueFoodItems = [];
-  const restaurantMenuInfo = restaurant?.cards;
+  const place = useRestaurantMenu(resId);
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart.items);
-  const getRestaurantInfo = (restaurant) => {
-    // Check if the expected structure for mobile exists
-    if (restaurant?.cards[2]?.card?.card?.info) {
-      return restaurant.cards[2].card.card.info;
-    }
-    // Fallback to the web structure
-    else if (restaurant?.cards[0]?.card?.card?.info) {
-      return restaurant.cards[0].card.card.info;
-    }
-    // Return null or a default object if neither path works
-    return null;
-  };
 
-  const restaurantInfo = getRestaurantInfo(restaurant);
-
-  // const menu = restaurant?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.find(x => x.card.card.title=="Recommended")
-  //   console.log(menu)
-
-  const customFilter = (object, result) => {
-    if (object.hasOwnProperty("itemCards")) result.push(object);
-
-    for (var i = 0; i < Object.keys(object).length; i++) {
-      if (typeof object[Object.keys(object)[i]] == "object") {
-        customFilter(object[Object.keys(object)[i]], result);
-      }
-    }
-  };
-  const resMenu =
-    restaurantMenuInfo?.length > 0 && customFilter(restaurantMenuInfo, result); //, "@type", "type.googleapis.com/swiggy.presentation.food.v2.Dish");
-  if (result.length > 0) {
-    const uniqueIds = [];
-    let uniqueItems = [
-      ...new Set(result.flatMap((f) => f.itemCards).map((p) => p.card.info)),
-    ];
-    uniqueFoodItems = uniqueItems?.filter((element) => {
-      const isDuplicate = uniqueIds.includes(element.id);
-
-      if (!isDuplicate) {
-        uniqueIds.push(element.id);
-
-        return true;
-      }
-
-      return false;
-    });
-  }
-
-  const addFoodItem = (item) => {
-    dispatch(addItem(item));
-  };
-
-  const removeFoodItem = () => {
-    dispatch(removeItem());
-  };
-  return (
-    <div className="flex flex-col min-h-screen">
+  if (!place) return (
+    <div className="flex flex-col min-h-screen bg-gray-50">
       <Nav />
-      {!restaurant ? (
-        <>
-          <MenuShimmer />
-          <ScrollToTop />
-        </>
-      ) : (
-        <div className="container mx-auto max-w-screen-lg p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-dotted pb-4">
-            <div className="space-y-2">
-              <h1 className="text-2xl font-bold">{restaurantInfo?.name}</h1>
-              <ul className="space-y-1 text-slate-500">
-                <li>{restaurantInfo?.cuisines.join(", ")}</li>
-                <li>
-                  {restaurantInfo?.areaName},{" "}
-                  {restaurantInfo?.sla?.lastMileTravelString}
-                </li>
-                <li className="text-green-700">
-                  {restaurantInfo?.avgRating} &#9733; ||{" "}
-                  {restaurantInfo?.totalRatingsString}
-                </li>
-              </ul>
-            </div>
-            <div className="w-full">
-              <img
-                className="rounded-lg object-cover w-full h-60"
-                srcSet={`${
-                  IMG_CDN_URL + restaurantInfo?.cloudinaryImageId
-                } 300w,
-           ${IMG_CDN_URL + restaurantInfo?.cloudinaryImageId} 768w,
-           ${IMG_CDN_URL + restaurantInfo?.cloudinaryImageId} 1280w`}
-                sizes="(max-width: 300px) 100vw, (max-width: 768px) 100vw, 1280px"
-                src={IMG_CDN_URL + restaurantInfo?.cloudinaryImageId}
-                alt={restaurantInfo?.name}
-              />
-            </div>
-          </div>
+      <MenuShimmer />
+      <ScrollToTop />
+      <Footer />
+    </div>
+  );
 
-          <div className="mt-6">
-            <h2 className="text-2xl font-bold mb-4">Menu</h2>
-            <ul className="space-y-4">
-              {uniqueFoodItems.map((item, index) => (
+  const { displayName, formattedAddress, rating, userRatingCount,
+          photos, types, regularOpeningHours, priceLevel } = place;
+
+  const cuisines  = formatTypes(types);
+  const price     = formatPrice(priceLevel);
+  const isOpen    = regularOpeningHours?.openNow;
+  const menuItems = getMenuForPlace(types || []);
+  const photoUrl  = photos?.[0]?.name ? PLACES_PHOTO_URL(photos[0].name) : null;
+  const totalInCart = cartItems.length;
+
+  return (
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <Nav />
+
+      {/* Hero */}
+      <div className="relative h-64 md:h-80 w-full overflow-hidden">
+        {photoUrl ? (
+          <img src={photoUrl} alt={displayName?.text} className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-orange-400 to-rose-400 flex items-center justify-center text-7xl">
+            🍽️
+          </div>
+        )}
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+        {/* Back button */}
+        <Link
+          to="/"
+          onClick={() => window.scrollTo(0, 0)}
+          className="absolute top-4 left-4 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full p-2.5 transition-colors"
+        >
+          <i className="fa-solid fa-arrow-left text-sm" />
+        </Link>
+
+        {/* Restaurant info on hero */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 pb-6 text-white">
+          <h1 className="text-2xl md:text-3xl font-extrabold leading-tight mb-1">
+            {displayName?.text}
+          </h1>
+          <p className="text-white/80 text-sm mb-3">{cuisines.join(" · ")}</p>
+          <div className="flex flex-wrap items-center gap-2">
+            {rating && (
+              <span className="flex items-center gap-1 bg-green-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">
+                ★ {rating}
+                <span className="font-normal opacity-80">({userRatingCount})</span>
+              </span>
+            )}
+            {price && (
+              <span className="bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-2.5 py-1 rounded-full">
+                {price}
+              </span>
+            )}
+            {isOpen !== undefined && (
+              <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
+                isOpen ? "bg-green-500 text-white" : "bg-red-500 text-white"
+              }`}>
+                {isOpen ? "Open Now" : "Closed"}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-screen-md mx-auto w-full px-4 py-6 space-y-5">
+
+        {/* Address */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 flex items-start gap-3">
+          <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center shrink-0">
+            <i className="fa-solid fa-location-dot text-orange-500 text-sm" />
+          </div>
+          <div>
+            <p className="text-xs text-gray-400 font-medium mb-0.5">Address</p>
+            <p className="text-sm text-gray-700">{formattedAddress}</p>
+          </div>
+        </div>
+
+        {/* Opening Hours */}
+        {regularOpeningHours?.weekdayDescriptions && (
+          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-9 h-9 rounded-xl bg-orange-50 flex items-center justify-center shrink-0">
+                <i className="fa-regular fa-clock text-orange-500 text-sm" />
+              </div>
+              <h2 className="font-semibold text-gray-800 text-sm">Opening Hours</h2>
+            </div>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-1.5 gap-x-4">
+              {regularOpeningHours.weekdayDescriptions.map((day, i) => (
+                <li key={i} className="text-xs text-gray-500">{day}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Menu */}
+        <div>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Menu</h2>
+          <ul className="space-y-3">
+            {menuItems.map((item) => {
+              const qty = cartItems.filter((c) => c.id === item.id).length;
+              return (
                 <li
-                  className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center"
                   key={item.id}
+                  className="bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 p-4 hover:shadow-md transition-shadow"
                 >
-                  <div className="md:col-span-3">
-                    <h3 className="font-semibold">{item.name}</h3>
-                    <p className="text-sm text-slate-500">{item.description}</p>
-                    <span className="text-lg font-bold">
-                      ₹
-                      {typeof item.price !== "undefined"
-                        ? item.price / 100
-                        : item.defaultPrice / 100}
+                  <img
+                    src={item.imageUrl}
+                    alt={item.name}
+                    className="w-20 h-20 rounded-xl object-cover shrink-0 bg-gray-100"
+                  />
+                  <div className="flex-grow min-w-0">
+                    <h3 className="font-semibold text-gray-900 text-sm leading-snug">{item.name}</h3>
+                    <p className="text-xs text-gray-400 mt-0.5 line-clamp-2">{item.description}</p>
+                    <span className="text-orange-500 font-bold text-sm mt-1.5 block">
+                      ₹{item.price / 100}
                     </span>
                   </div>
-                  <div className="flex items-center justify-center space-x-3">
+
+                  {/* Quantity control */}
+                  <div className="flex items-center gap-2 shrink-0">
                     <button
-                      aria-label="Decrease quantity"
-                      onClick={() => removeFoodItem(item.id)}
-                      className="text-gray-800 bg-red-200 hover:bg-gray-300  font-medium rounded-md text-lg px-3 py-1 transition duration-150 ease-in-out"
+                      aria-label="Remove one"
+                      onClick={() => dispatch(removeItem(item))}
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-lg transition-colors ${
+                        qty > 0
+                          ? "bg-orange-500 text-white hover:bg-orange-600"
+                          : "bg-gray-100 text-gray-300 cursor-not-allowed"
+                      }`}
+                      disabled={qty === 0}
                     >
                       &ndash;
                     </button>
-                    <span className="text-lg font-semibold">
-                      {cartItems.filter((f) => f.id === item.id).length}
-                    </span>
+                    <span className="text-sm font-bold text-gray-800 w-5 text-center">{qty}</span>
                     <button
-                      aria-label="Increase quantity"
-                      onClick={() => addFoodItem(item)}
-                      className="text-gray-800 bg-green-200 hover:bg-gray-300  font-medium rounded-md text-lg px-3 py-1 transition duration-150 ease-in-out"
+                      aria-label="Add one"
+                      onClick={() => dispatch(addItem(item))}
+                      className="w-8 h-8 rounded-lg bg-orange-500 hover:bg-orange-600 text-white flex items-center justify-center font-bold text-lg transition-colors"
                     >
                       +
                     </button>
                   </div>
                 </li>
-              ))}
-            </ul>
-          </div>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
 
-          {cartItems.length > 0 && (
-            <div className="fixed bottom-4 right-4 mb-12 mr-10">
-              <Link to="/cart">
-                <button className="px-5 py-2 text-sm font-bold tracking-wide text-white bg-orange-500 rounded-full shadow-lg hover:bg-orange-600">
-                  <i className="fa fa-shopping-cart"></i> Cart -{" "}
-                  {cartItems.length}
-                </button>
-              </Link>
+      {/* Sticky cart CTA */}
+      {totalInCart > 0 && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 w-full max-w-sm">
+          <Link to="/cart" onClick={() => window.scrollTo(0, 0)}>
+            <div className="bg-orange-500 hover:bg-orange-600 text-white rounded-2xl px-6 py-4 flex items-center justify-between shadow-2xl transition-colors cursor-pointer">
+              <span className="bg-orange-600 text-white text-xs font-bold rounded-lg px-2.5 py-1">
+                {totalInCart} item{totalInCart !== 1 ? "s" : ""}
+              </span>
+              <span className="font-bold text-sm">View Cart</span>
+              <i className="fa-solid fa-arrow-right text-sm" />
             </div>
-          )}
+          </Link>
         </div>
       )}
+
       <Footer />
     </div>
   );
 };
+
 export default RestaurantMenu;

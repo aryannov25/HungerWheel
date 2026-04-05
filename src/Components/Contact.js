@@ -1,118 +1,128 @@
-import React, { useState, useRef } from "react";
-import Nav from "./Navbar.js";
+import React, { useState } from "react";
+import Nav from "./Navbar";
 import Footer from "./Footer";
 
 function Contact() {
+  const [name, setName]       = useState("");
+  const [email, setEmail]     = useState("");
   const [message, setMessage] = useState("");
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [sent, setSent]       = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const submitHandler = (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
-
-    // Prepare data object for submission
-    const Data = {
-      name: name,
-      email: email,
-      message: message,
-    };
-
-    // Perform the fetch API call to submit the form data
-    fetch("https://hunger-wheel-default-rtdb.firebaseio.com/data.json", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Data),
-    })
-      .then(() => {
-        alert("Success");
-        // Reset form fields after successful submission
-        setMessage("");
-        setEmail("");
-        setName("");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again.");
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await fetch("https://hunger-wheel-default-rtdb.firebaseio.com/data.json", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
       });
+      setSent(true);
+      setName(""); setEmail(""); setMessage("");
+    } catch {
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
+  const inputClass =
+    "w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:bg-white focus:border-transparent transition-all placeholder-gray-400";
+
   return (
-    <>
-      <div className="flex flex-col justify-between h-screen">
-        <Nav />
-        <div className="flex justify-center items-center px-4 py-2 ">
-          <form
-            className="w-full max-w-lg space-y-4 bg-white rounded-lg shadow-md p-4"
-            onSubmit={submitHandler}
-            style={{ flex: 1 }} // This will allow the form to be flexible
-          >
-            <div className="text-center">
-              <h1 className="text-2xl font-semibold text-gray-900 sm:text-3xl">
-                Contact Us
-              </h1>
-              <p className="mt-2 text-gray-600">
-                We'd love to hear feedback from you
-              </p>
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <Nav />
+
+      <div className="flex-grow flex items-center justify-center px-4 py-12">
+        <div className="w-full max-w-lg">
+
+          {sent ? (
+            /* Success state */
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 text-center">
+              <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                ✅
+              </div>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Message Sent!</h2>
+              <p className="text-gray-400 text-sm mb-6">Thanks for reaching out. I'll get back to you soon.</p>
+              <button
+                onClick={() => setSent(false)}
+                className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-colors"
+              >
+                Send Another
+              </button>
             </div>
-            <div className="space-y-4">
+          ) : (
+            <form onSubmit={submitHandler} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 space-y-5">
+
+              {/* Header */}
+              <div className="text-center mb-2">
+                <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center text-xl mx-auto mb-4">
+                  💬
+                </div>
+                <h1 className="text-2xl font-extrabold text-gray-900">Get in Touch</h1>
+                <p className="text-gray-400 text-sm mt-1">We'd love to hear from you</p>
+              </div>
+
               <div>
-                <label htmlFor="name" className="text-sm text-gray-700">
-                  Name
-                </label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1.5">Name</label>
                 <input
-                  type="text"
-                  id="name"
-                  required
-                  name="name"
-                  value={name} // Controlled component
-                  onChange={(e) => setName(e.target.value)} // Update state on change
-                  className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                  type="text" required value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name"
+                  className={inputClass}
                 />
               </div>
+
               <div>
-                <label htmlFor="email" className="text-sm text-gray-700">
-                  Email
-                </label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1.5">Email</label>
                 <input
-                  required
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={email} // Controlled component
-                  onChange={(e) => setEmail(e.target.value)} // Update state on change
-                  className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
+                  type="email" required value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className={inputClass}
                 />
               </div>
+
               <div>
-                <label htmlFor="message" className="text-sm text-gray-700">
-                  Message
-                </label>
+                <label className="block text-xs font-semibold text-gray-600 mb-1.5">Message</label>
                 <textarea
-                  required
-                  id="message"
-                  name="message"
-                  rows="4"
-                  value={message} // Controlled component
-                  onChange={(e) => setMessage(e.target.value)} // Update state on change
-                  className="mt-1 w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-orange-500 focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
-                ></textarea>
+                  required rows="4" value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Your message…"
+                  className={inputClass}
+                />
               </div>
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="px-6 py-2 text-lg text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50"
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </form>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 bg-orange-500 hover:bg-orange-600 disabled:opacity-60 text-white rounded-xl font-semibold text-sm transition-colors shadow-sm flex items-center justify-center gap-2"
+              >
+                {loading ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                    </svg>
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    <i className="fa-solid fa-paper-plane" />
+                    Send Message
+                  </>
+                )}
+              </button>
+
+            </form>
+          )}
+
         </div>
-        <Footer />
       </div>
-    </>
+
+      <Footer />
+    </div>
   );
 }
 

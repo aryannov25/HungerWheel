@@ -1,59 +1,49 @@
-const Shimmer = () => {
-  return (
-    <div className="animate-pulse p-2 m-2 flex flex-wrap justify-center">
-      {Array(10)
-        .fill("")
-        .map((_, index) => (
-          <div
-            className="w-56 h-64 p-2 m-2 bg-stone-100 rounded flex animate-shimmer"
-            key={index}
-          >
-            <div className="flex-1 space-y-4 py-1">
-              <div className="h-24 bg-shimmer rounded bg-200% bg-no-repeat"></div>
-              <div className="h-8 bg-shimmer rounded bg-200% bg-no-repeat"></div>
-              <div className="space-y-3">
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="h-2 bg-shimmer rounded col-span-1 bg-200% bg-no-repeat"></div>
-                  <div className="h-2 bg-shimmer rounded col-span-1 bg-200% bg-no-repeat"></div>
-                  <div className="h-2 bg-shimmer rounded col-span-1 bg-200% bg-no-repeat"></div>
-                </div>
-                <div className="h-2 bg-shimmer rounded bg-200% bg-no-repeat"></div>
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="h-2 bg-shimmer rounded col-span-2 bg-200% bg-no-repeat"></div>
-                  <div className="h-2 bg-shimmer rounded col-span-1 bg-200% bg-no-repeat"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+const ShimmerCard = () => (
+  <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+    <div className="h-44 bg-shimmer bg-200% animate-shimmer" />
+    <div className="p-4 space-y-2.5">
+      <div className="h-4 bg-shimmer bg-200% animate-shimmer rounded-lg w-3/4" />
+      <div className="h-3 bg-shimmer bg-200% animate-shimmer rounded-lg w-1/2" />
+      <div className="h-3 bg-shimmer bg-200% animate-shimmer rounded-lg w-2/3" />
+      <div className="flex gap-2 pt-1">
+        <div className="h-5 w-16 bg-shimmer bg-200% animate-shimmer rounded-full" />
+        <div className="h-5 w-12 bg-shimmer bg-200% animate-shimmer rounded-full" />
+      </div>
     </div>
-  );
-};
+  </div>
+);
+
+const Shimmer = () => (
+  <div className="max-w-7xl mx-auto px-6 py-8">
+    <div className="h-4 bg-shimmer bg-200% animate-shimmer rounded-lg w-40 mb-6" />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {Array(8).fill("").map((_, i) => <ShimmerCard key={i} />)}
+    </div>
+  </div>
+);
 
 export default Shimmer;
 
-export const MenuShimmer = () => {
-  const shimmer_menu_card_unit = 4;
-
-  return (
-    <div className="animate-pulse p-2 m-2">
-      <div className="rounded overflow-hidden animate-shimmer bg-shimmer bg-200% bg-no-repeat">
-        <div className="h-48"></div>
-        <div className="p-4 space-y-4">
-          <div className="h-6 bg-shimmer rounded bg-200% bg-no-repeat"></div>
-          <div className="h-4 bg-shimmer rounded bg-200% bg-no-repeat"></div>
-          <div className="space-y-2">
-            {Array(shimmer_menu_card_unit)
-              .fill("")
-              .map((_, index) => (
-                <div className="grid grid-cols-3 gap-4" key={index}>
-                  <div className="h-4 bg-shimmer rounded col-span-2 bg-200% bg-no-repeat"></div>
-                  <div className="h-4 bg-shimmer rounded col-span-1 bg-200% bg-no-repeat"></div>
-                </div>
-              ))}
+export const MenuShimmer = () => (
+  <div className="flex-grow">
+    {/* Hero shimmer */}
+    <div className="h-64 bg-shimmer bg-200% animate-shimmer" />
+    <div className="max-w-screen-md mx-auto px-4 py-6 space-y-4">
+      <div className="bg-white rounded-2xl border border-gray-100 p-4 space-y-2">
+        <div className="h-4 bg-shimmer bg-200% animate-shimmer rounded-lg w-1/3" />
+        <div className="h-3 bg-shimmer bg-200% animate-shimmer rounded-lg w-2/3" />
+      </div>
+      <div className="h-4 bg-shimmer bg-200% animate-shimmer rounded-lg w-24 mt-4" />
+      {Array(4).fill("").map((_, i) => (
+        <div key={i} className="bg-white rounded-2xl border border-gray-100 p-4 flex gap-4">
+          <div className="w-20 h-20 bg-shimmer bg-200% animate-shimmer rounded-xl shrink-0" />
+          <div className="flex-grow space-y-2 py-1">
+            <div className="h-4 bg-shimmer bg-200% animate-shimmer rounded-lg w-3/4" />
+            <div className="h-3 bg-shimmer bg-200% animate-shimmer rounded-lg w-full" />
+            <div className="h-4 bg-shimmer bg-200% animate-shimmer rounded-lg w-1/4" />
           </div>
         </div>
-      </div>
+      ))}
     </div>
-  );
-};
+  </div>
+);

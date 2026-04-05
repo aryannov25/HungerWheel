@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import { FETCH_MENU_URL } from "./Constants";
+import { PLACES_DETAILS_URL, DETAILS_FIELD_MASK } from "./Constants";
 
-const useRestaurant = (resId) => {
-  const [restaurant, setRestauraunt] = useState(null);
+const useRestaurantMenu = (placeId) => {
+  const [place, setPlace] = useState(null);
 
   useEffect(() => {
-    getRestaurantInfo();
+    async function fetchPlaceDetails() {
+      const res = await fetch(PLACES_DETAILS_URL + placeId, {
+        headers: { "X-Goog-FieldMask": DETAILS_FIELD_MASK },
+      });
+      const json = await res.json();
+      setPlace(json);
+    }
+    fetchPlaceDetails();
   }, []);
 
-  async function getRestaurantInfo() {
-    const data = await fetch(FETCH_MENU_URL + resId);
-    const json = await data.json();
-    setRestauraunt(json.data);
-  }
-
-  return restaurant;
+  return place;
 };
 
-export default useRestaurant;
+export default useRestaurantMenu;
