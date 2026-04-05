@@ -1,13 +1,11 @@
+// Forward /gapi and /photo requests to the local Express proxy during development
 module.exports = {
-  "/dapi": {
-    target: "https://www.swiggy.com",
+  "/gapi": {
+    target: "http://localhost:3000",
     changeOrigin: true,
-    headers: {
-      "__fetch_req__": "true",
-      "content-type": "application/json",
-      "platform": "dweb",
-      "user-agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
-    },
+  },
+  "/photo": {
+    target: "http://localhost:3000",
+    changeOrigin: true,
   },
 };

@@ -1,11 +1,7 @@
-export const PLACES_NEARBY_URL =
-  "http://localhost:3000/gapi/v1/places:searchNearby";
-
-export const PLACES_DETAILS_URL =
-  "http://localhost:3000/gapi/v1/places/";
-
+export const PLACES_NEARBY_URL = "/gapi/v1/places:searchNearby";
+export const PLACES_DETAILS_URL = "/gapi/v1/places/";
 export const PLACES_PHOTO_URL = (photoName) =>
-  `http://localhost:3000/photo?name=${encodeURIComponent(photoName)}`;
+  `/photo?name=${encodeURIComponent(photoName)}`;
 
 export const NEARBY_FIELD_MASK =
   "places.id,places.displayName,places.shortFormattedAddress,places.rating,places.userRatingCount,places.photos,places.types,places.currentOpeningHours,places.priceLevel,places.primaryTypeDisplayName";
