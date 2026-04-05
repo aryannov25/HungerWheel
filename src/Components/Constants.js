@@ -1,7 +1,17 @@
-export const PLACES_NEARBY_URL = "/gapi/v1/places:searchNearby";
-export const PLACES_DETAILS_URL = "/gapi/v1/places/";
+const isLocal = typeof window !== "undefined" && window.location.hostname === "localhost";
+
+export const PLACES_NEARBY_URL = isLocal
+  ? "http://localhost:3000/gapi/v1/places:searchNearby"
+  : "/.netlify/functions/places-nearby";
+
+export const PLACES_DETAILS_URL = isLocal
+  ? "http://localhost:3000/gapi/v1/places/"
+  : "/.netlify/functions/place-details?id=";
+
 export const PLACES_PHOTO_URL = (photoName) =>
-  `/photo?name=${encodeURIComponent(photoName)}`;
+  isLocal
+    ? `http://localhost:3000/photo?name=${encodeURIComponent(photoName)}`
+    : `/.netlify/functions/photo?name=${encodeURIComponent(photoName)}`;
 
 export const NEARBY_FIELD_MASK =
   "places.id,places.displayName,places.shortFormattedAddress,places.rating,places.userRatingCount,places.photos,places.types,places.currentOpeningHours,places.priceLevel,places.primaryTypeDisplayName";
